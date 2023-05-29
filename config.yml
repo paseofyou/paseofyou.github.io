@@ -1,0 +1,52 @@
+baseURL: http://example.org/
+languageCode: en-us
+title: paseofyou's blog
+theme: paperMod
+
+params:
+    homeInfoParams:
+        Title: "Hello"
+        Content: "welcome"
+     
+    socialIcons: 
+        - name: github
+          url: "https://github.com/"  
+    
+    cover:
+        linkfullImages: true
+    
+    showBreadCrumbs: true
+    showReadingTime: true
+    showShareButtons: true
+    showPostNavlinks: true
+
+menu:
+    main:
+      - identifier: search
+        name: 🔍搜索
+        url: search
+        weight: 1
+      - identifier: home
+        name: 🏠主页
+        url: /
+        weight: 2
+      - identifier: posts
+        name: 📚文章
+        url: posts
+        weight: 3
+      - identifier: archives
+        name: ⏱时间轴
+        url: archives/
+        weight: 20
+      - identifier: tags
+        name: 🔖标签
+        url: tags
+        weight: 40
+      - identifier: about
+        name: 🙋🏻‍♂️关于
+        url: about
+        weight: 50
+      - identifier: links
+        name: 🤝友链
+        url: links
+        weight: 60
