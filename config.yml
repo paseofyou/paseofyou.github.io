@@ -1,7 +1,7 @@
 baseURL: http://example.org/
 languageCode: en-us
 title: paseofyou's blog
-theme: paperMod
+theme: PaperMod
 
 params:
     homeInfoParams:
