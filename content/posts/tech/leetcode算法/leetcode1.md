@@ -1,0 +1,7 @@
+---
+title: "Leetcode1"
+date: 2023-05-30T15:19:34+08:00
+draft: false
+---
+
+13

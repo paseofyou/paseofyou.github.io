@@ -1,6 +1,7 @@
 ---
-title: "hugo博客搭建"
+title: "📚hugo博客搭建"
 hidemeta: true 
 summary: hugo博客搭建
+weight: 1000
 ---
 
