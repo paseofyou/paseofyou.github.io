@@ -1,9 +1,7 @@
 ---
-title: "📚leetcode算法"
+title: "📚算法"
 hidemeta: true # 是否隐藏文章的元信息，如发布日期、作者等
-summary: 算法笔记
-weight: 10
+summary: 算法
+weight: 20
 ---
-
-
 
