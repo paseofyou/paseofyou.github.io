@@ -1,24 +1,61 @@
-baseURL: http://example.org/
-languageCode: en-us
+baseURL: http://www.paseofyou.xyz/
+languageCode: zh-cn
 title: paseofyou's blog
 theme: PaperMod
 
+
 params:
+    profileMode:
+        enabled: true
+        title: 星痕
+        subtitle: "👏🏼这里是个人记录的地点。"
+        imageUrl: "http://q.qlogo.cn/headimg_dl?dst_uin=863630017&spec=640&img_type=jpg" 
+        imageTitle: 
+        imageWidth: 150
+        imageHeight: 150
+        buttons:
+          - name: ⏱️ 时间轴
+            url: archives
+
+
+
     homeInfoParams:
         Title: "Hello"
         Content: "welcome"
      
     socialIcons: 
         - name: github
-          url: "https://github.com/"  
-    
+          url: "https://github.com/paseofyou"  
+
+
     cover:
         linkfullImages: true
     
     showBreadCrumbs: true
     showReadingTime: true
-    showShareButtons: true
-    showPostNavlinks: true
+    showShareButtons: false
+    showPostNavlinks: false
+    
+    
+    env: production # to enable google analytics, opengraph, twitter-cards and schema.
+    # description: "这是一个纯粹的博客......"
+    author: paseofyou
+    # author: ["Me", "You"] # multiple authors
+    defaultTheme: dark  # defaultTheme: light or  dark 
+    disableThemeToggle: false
+    DateFormat: "2006-01-06"
+    # disableSpecialistPost: true
+    displayFullLangName: true
+    ShowCodeCopyButtons: true
+    hideFooter: false # 隐藏页脚
+    ShowWordCounts: true
+    VisitCount: true
+    ShowLastMod: true #显示文章更新时间
+    ShowToc: true # 显示目录
+    TocOpen: true # 自动展开目录
+    comments: true
+    DateFormat: "2006-01-02"
+
 
 menu:
     main:
@@ -30,23 +67,90 @@ menu:
         name: 🏠主页
         url: /
         weight: 2
-      - identifier: posts
-        name: 📚文章
-        url: posts
+      - identifier: posts/tech
+        name: 📚技术
+        url: posts/tech
         weight: 3
       - identifier: archives
         name: ⏱时间轴
-        url: archives/
+        url: archives
         weight: 20
       - identifier: tags
         name: 🔖标签
         url: tags
         weight: 40
-      - identifier: about
-        name: 🙋🏻‍♂️关于
-        url: about
-        weight: 50
-      - identifier: links
-        name: 🤝友链
-        url: links
-        weight: 60
+
+
+        
+
+
+
+enableInlineShortcodes: true #允许内联短码
+enableEmoji: true # 允许使用 Emoji 表情，建议 true
+enableRobotsTXT: true # 允许爬虫抓取到搜索引擎，建议 true
+
+hasCJKLanguage: true # 自动检测是否包含 中文日文韩文 如果文章中使用了很多中文引号的话可以开启
+
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+#googleAnalytics: UA-123-45 # 谷歌统计
+# Copyright: Sulv
+
+paginate: 15    # 每页显示的文章数
+
+minify:
+    disableXML: true
+    # minifyOutput: true
+
+permalinks: #浏览器链接显示方式
+  post: "/:title/"
+  # post: "/:year/:month/:day/:title/"
+
+defaultContentLanguage: zh-cn # 最顶部首先展示的语言页面
+defaultContentLanguageInSubdir: true
+outputs:
+    home:
+        - HTML
+        - RSS
+        - JSON
+markup:
+    goldmark:
+        renderer:
+            unsafe: true
+    highlight:
+        noClasses: false
+        # anchorLineNos: true
+        # codeFences: true
+        # guessSyntax: true
+        # lineNos: true
+        # style: monokai
+    
+
+
+privacy:
+    vimeo:
+        disabled: false
+        simple: true
+
+    twitter:
+        disabled: false
+        enableDNT: true
+        simple: true
+
+    instagram:
+        disabled: false
+        simple: true
+
+    youtube:
+        disabled: false
+        privacyEnhanced: true
+
+services:
+    instagram:
+        disableInlineCSS: true
+    twitter:
+        disableInlineCSS: true
+
+
