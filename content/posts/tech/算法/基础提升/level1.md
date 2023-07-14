@@ -1,6 +1,6 @@
 ---
 title: "level1"
-date: 2023-05-31T15:19:34+08:00
+date: 2023-07-14T23:19:34+08:00
 draft: false
 weight: 10
 ---
@@ -67,11 +67,6 @@ public static void swap(int[] arr, int i, int j){
 }
 ```
 
-练习：
-
-1. 一个数组中，有一个数为奇数次，其他为偶数次，找出这个数
-2. 一个数组中，有两个数为奇数次，其他为偶数次，找出这两个数
-
 ## 插入排序细节的讲解与复杂度分析
 时间复杂度0(N^2)，额外空间复杂度0(1)
 
@@ -95,6 +90,43 @@ public static void InsertSort(int[] arr){
 3. 局部最小值问题
 
 练习：在无序数组中，局部最小的数
+
+## 异或运算的性质与扩展
+
+1. 0^N == N       N^N == 0
+2. 异或运算满足交换律和结合率
+3. 不用额外变量交换两个数
+4. 一个数组中，有一个数为奇数次，其他为偶数次，找出这个数
+5. 一个数组中，有两个数为奇数次，其他为偶数次，找出这两个数
+
+```java
+// 一个数组中，有一个数为奇数次，其他为偶数次，找出这个数
+private static void work1() {
+    int eor = 0;
+    for (int curNum : arr2) {
+        eor ^= curNum;
+    }
+    System.out.println(eor);
+}
+// 一个数组中，有两个数为奇数次，其他为偶数次，找出这两个数
+private static void work2() {
+    int eor = 0;
+    for (int curNum : arr) {
+        eor ^= curNum;
+    }
+
+    int rightOne = (~eor + 1) & eor;
+    int onlyOne = 0;
+    for (int curNum : arr) {
+        if ((rightOne & curNum) == 0) {
+            onlyOne^=curNum;
+        }
+    }
+    System.out.println("a=" + onlyOne + ";b=" + (eor ^ onlyOne));
+}
+```
+
+
 
 ## 对数器的概念和使用
 意思就是：用一个简单粗暴的方法来验证待测方法是否正确。
