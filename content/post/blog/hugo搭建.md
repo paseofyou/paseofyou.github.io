@@ -147,6 +147,7 @@ Hugo 允许在文章内容前面添加 `yaml`, `toml` 或者 `json` 格式的前
 - 返回到博客项目，在项目的设置找到 Secrets and variables，里面的 action secrets 中，设置 secrets：
   `PERSONAL_TOKEN`，密码为上面的令牌密钥。
 - 在项目设置中找到rules，新建分支rule ，**记得启用**，把当前分支允许操作别的分支权限给打开。
+- 在项目设置的 page 中，将 source 改为 github actions 即可
 
 部署环节：
 
