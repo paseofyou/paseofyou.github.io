@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="原本搭建了hexo和hugo的，发现我还是喜欢美观和性能取中间值，就有了现在这个blog 环境准备 1、下载hugo的exe： https://github.com/gohugoio/hugo/releases/latest 官方推荐选择扩展的版本。 将exe放到电脑本地上，推荐D:/software/hugo/bin。并配好cmd的系统环境变量。 2、下载git，并链接好自己的github账号，直到能上传项目到号上为止（自行摸索） 3、notepad++、vscode、typora 开始搭建 先说思路，我一开始是对其他博客教程中的 github 分支里， main 做主分支，page 做文章发布页是持怀疑态度的，最后经过我10多小时的踩坑时间，发现这样做居然是最省力的，最高效的。所以我也准备这样做。 当然我很乐意分享我的博客源码，如果对分享比较敏感的小伙伴，可以创建两个仓库，一个用作博客源代码仓库，一个做文章发布仓库，用 github ci 来对两个仓库进行连接和推送也是可以的。可以根据我最后提供的 ci 代码进行更改也是能实现的。 1、在自己的github上新建项目，取名为&lt;你的github名字&gt;.github.io，将克隆链接复制下来备用。 2、首先在本地选好项目位置，新建文件夹后，在这个位置打开cmd 1 2 3 git clone &lt;你刚刚复制的链接&gt; cd &lt;克隆的项目&gt; hugo new site &lt;博客名字&gt; archetypes：存放用 hugo 命令新建的 Markdown 文件应用的 front matter 模版 content：存放内容页面，比如「博客」、「读书笔记」等 layouts：存放定义网站的样式，写在layouts文件下的样式会覆盖安装的主题中的 layouts文件同名的样式 static：存放所有静态文件，如图片 data：存放创建站点时 Hugo 使用的其他数据 public：存放 Hugo 生成的静态网页 themes：存放主题文件 config.toml：网站配置文件 3、安装喜欢的hugo主题，在以下链接中选择一个主题。 https://themes.gohugo.io/ 推荐使用以下命令进行安装。 1 git submodule add &lt;主题克隆地址&gt; themes/&lt;主题名称&gt; 此时theme文件夹里就有了刚刚下载的主题。 注意：不要在这个文件夹内修改，因为主题一旦更新就会被覆盖你做的主题修改。如果需要更改主题部分，可以把主题的内容复制到根目录对应的文件，即可随便修改。 4、主题中有许多预定义的格式设置，可以把它复制到theme文件夹同级的其他文件中。比如主题的content可以复制到自己网站的content。**不要傻瓜式的一次性复制过来，会报错！**一点一点的复制过来，复制一下，用下面代码运行一下。运行不了的不要复制过来，删掉复制过来的报错内容，没必要去修。 注意：你每次做更改，需要按下ctrl+c后重新运行才会生效。 1 hugo server 5、把主题的hugo.">
+<title>hugo博客搭建</title>
+
+<link rel='canonical' href='https://paseofyou.github.io/p/hugo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/'>
+
+<link rel="stylesheet" href="/scss/style.min.e8c7fca7d1c9294aa7a4f3426c225ee26540f7d94e39be0b5a4a5c8a49ca5a25.css"><meta property='og:title' content="hugo博客搭建">
+<meta property='og:description' content="原本搭建了hexo和hugo的，发现我还是喜欢美观和性能取中间值，就有了现在这个blog 环境准备 1、下载hugo的exe： https://github.com/gohugoio/hugo/releases/latest 官方推荐选择扩展的版本。 将exe放到电脑本地上，推荐D:/software/hugo/bin。并配好cmd的系统环境变量。 2、下载git，并链接好自己的github账号，直到能上传项目到号上为止（自行摸索） 3、notepad++、vscode、typora 开始搭建 先说思路，我一开始是对其他博客教程中的 github 分支里， main 做主分支，page 做文章发布页是持怀疑态度的，最后经过我10多小时的踩坑时间，发现这样做居然是最省力的，最高效的。所以我也准备这样做。 当然我很乐意分享我的博客源码，如果对分享比较敏感的小伙伴，可以创建两个仓库，一个用作博客源代码仓库，一个做文章发布仓库，用 github ci 来对两个仓库进行连接和推送也是可以的。可以根据我最后提供的 ci 代码进行更改也是能实现的。 1、在自己的github上新建项目，取名为&lt;你的github名字&gt;.github.io，将克隆链接复制下来备用。 2、首先在本地选好项目位置，新建文件夹后，在这个位置打开cmd 1 2 3 git clone &lt;你刚刚复制的链接&gt; cd &lt;克隆的项目&gt; hugo new site &lt;博客名字&gt; archetypes：存放用 hugo 命令新建的 Markdown 文件应用的 front matter 模版 content：存放内容页面，比如「博客」、「读书笔记」等 layouts：存放定义网站的样式，写在layouts文件下的样式会覆盖安装的主题中的 layouts文件同名的样式 static：存放所有静态文件，如图片 data：存放创建站点时 Hugo 使用的其他数据 public：存放 Hugo 生成的静态网页 themes：存放主题文件 config.toml：网站配置文件 3、安装喜欢的hugo主题，在以下链接中选择一个主题。 https://themes.gohugo.io/ 推荐使用以下命令进行安装。 1 git submodule add &lt;主题克隆地址&gt; themes/&lt;主题名称&gt; 此时theme文件夹里就有了刚刚下载的主题。 注意：不要在这个文件夹内修改，因为主题一旦更新就会被覆盖你做的主题修改。如果需要更改主题部分，可以把主题的内容复制到根目录对应的文件，即可随便修改。 4、主题中有许多预定义的格式设置，可以把它复制到theme文件夹同级的其他文件中。比如主题的content可以复制到自己网站的content。**不要傻瓜式的一次性复制过来，会报错！**一点一点的复制过来，复制一下，用下面代码运行一下。运行不了的不要复制过来，删掉复制过来的报错内容，没必要去修。 注意：你每次做更改，需要按下ctrl+c后重新运行才会生效。 1 hugo server 5、把主题的hugo.">
+<meta property='og:url' content='https://paseofyou.github.io/p/hugo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/'>
+<meta property='og:site_name' content='paseofyou的博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='misc' /><meta property='article:published_time' content='2024-06-04T10:12:50&#43;08:00'/><meta property='article:modified_time' content='2024-06-04T10:12:50&#43;08:00'/>
+<meta name="twitter:title" content="hugo博客搭建">
+<meta name="twitter:description" content="原本搭建了hexo和hugo的，发现我还是喜欢美观和性能取中间值，就有了现在这个blog 环境准备 1、下载hugo的exe： https://github.com/gohugoio/hugo/releases/latest 官方推荐选择扩展的版本。 将exe放到电脑本地上，推荐D:/software/hugo/bin。并配好cmd的系统环境变量。 2、下载git，并链接好自己的github账号，直到能上传项目到号上为止（自行摸索） 3、notepad++、vscode、typora 开始搭建 先说思路，我一开始是对其他博客教程中的 github 分支里， main 做主分支，page 做文章发布页是持怀疑态度的，最后经过我10多小时的踩坑时间，发现这样做居然是最省力的，最高效的。所以我也准备这样做。 当然我很乐意分享我的博客源码，如果对分享比较敏感的小伙伴，可以创建两个仓库，一个用作博客源代码仓库，一个做文章发布仓库，用 github ci 来对两个仓库进行连接和推送也是可以的。可以根据我最后提供的 ci 代码进行更改也是能实现的。 1、在自己的github上新建项目，取名为&lt;你的github名字&gt;.github.io，将克隆链接复制下来备用。 2、首先在本地选好项目位置，新建文件夹后，在这个位置打开cmd 1 2 3 git clone &lt;你刚刚复制的链接&gt; cd &lt;克隆的项目&gt; hugo new site &lt;博客名字&gt; archetypes：存放用 hugo 命令新建的 Markdown 文件应用的 front matter 模版 content：存放内容页面，比如「博客」、「读书笔记」等 layouts：存放定义网站的样式，写在layouts文件下的样式会覆盖安装的主题中的 layouts文件同名的样式 static：存放所有静态文件，如图片 data：存放创建站点时 Hugo 使用的其他数据 public：存放 Hugo 生成的静态网页 themes：存放主题文件 config.toml：网站配置文件 3、安装喜欢的hugo主题，在以下链接中选择一个主题。 https://themes.gohugo.io/ 推荐使用以下命令进行安装。 1 git submodule add &lt;主题克隆地址&gt; themes/&lt;主题名称&gt; 此时theme文件夹里就有了刚刚下载的主题。 注意：不要在这个文件夹内修改，因为主题一旦更新就会被覆盖你做的主题修改。如果需要更改主题部分，可以把主题的内容复制到根目录对应的文件，即可随便修改。 4、主题中有许多预定义的格式设置，可以把它复制到theme文件夹同级的其他文件中。比如主题的content可以复制到自己网站的content。**不要傻瓜式的一次性复制过来，会报错！**一点一点的复制过来，复制一下，用下面代码运行一下。运行不了的不要复制过来，删掉复制过来的报错内容，没必要去修。 注意：你每次做更改，需要按下ctrl+c后重新运行才会生效。 1 hugo server 5、把主题的hugo.">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://q2.qlogo.cn/headimg_dl?dst_uin=863630017&amp;spec=100" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">🍵</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">paseofyou的博客</a></h1>
+            <h2 class="site-description">记录过往，留有回忆</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/paseofyou'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E6%94%B6%E8%97%8F/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>收藏</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#环境准备">环境准备</a></li>
+    <li><a href="#开始搭建">开始搭建</a></li>
+    <li><a href="#网站写作">网站写作</a></li>
+    <li><a href="#github部署">github部署</a></li>
+    <li><a href="#评论系统">评论系统</a></li>
+    <li><a href="#本文引用">本文引用</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/blog/" style="background-color: #2a9d8f; color: #fff;">
+                blog搭建记录
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/hugo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">hugo博客搭建</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jun 04, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 3 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <blockquote>
+<p>原本搭建了hexo和hugo的，发现我还是喜欢美观和性能取中间值，就有了现在这个blog</p>
+</blockquote>
+<h2 id="环境准备">环境准备
+</h2><p>1、下载hugo的exe：
+<a class="link" href="https://github.com/gohugoio/hugo/releases/latest"  target="_blank" rel="noopener"
+    >https://github.com/gohugoio/hugo/releases/latest</a></p>
+<p>官方推荐选择扩展的版本。</p>
+<p>将exe放到电脑本地上，推荐<code>D:/software/hugo/bin</code>。并配好cmd的系统环境变量。</p>
+<p>2、下载git，并链接好自己的github账号，直到能上传项目到号上为止（自行摸索）</p>
+<p>3、notepad++、vscode、typora</p>
+<h2 id="开始搭建">开始搭建
+</h2><blockquote>
+<p>先说思路，我一开始是对其他博客教程中的 github 分支里， main 做主分支，page 做文章发布页是持怀疑态度的，最后经过我10多小时的踩坑时间，发现这样做居然是最省力的，最高效的。所以我也准备这样做。</p>
+<p>当然我很乐意分享我的博客源码，如果对分享比较敏感的小伙伴，可以创建两个仓库，一个用作博客源代码仓库，一个做文章发布仓库，用 github ci 来对两个仓库进行连接和推送也是可以的。可以根据我最后提供的 ci 代码进行更改也是能实现的。</p>
+</blockquote>
+<p>1、在自己的github上新建项目，取名为<code>&lt;你的github名字&gt;.github.io</code>，将克隆链接复制下来备用。</p>
+<p>2、首先在本地选好项目位置，新建文件夹后，在这个位置打开cmd</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone &lt;你刚刚复制的链接&gt;
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> &lt;克隆的项目&gt;
+</span></span><span class="line"><span class="cl">hugo new site &lt;博客名字&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<ul>
+<li><strong>archetypes</strong>：存放用 hugo 命令新建的 Markdown 文件应用的 front matter 模版</li>
+<li><strong>content</strong>：存放内容页面，比如「博客」、「读书笔记」等</li>
+<li><strong>layouts</strong>：存放定义网站的样式，写在<code>layouts</code>文件下的样式会覆盖安装的主题中的 <code>layouts</code>文件同名的样式</li>
+<li><strong>static</strong>：存放所有静态文件，如图片</li>
+<li><strong>data</strong>：存放创建站点时 Hugo 使用的其他数据</li>
+<li><strong>public</strong>：存放 Hugo 生成的静态网页</li>
+<li><strong>themes</strong>：存放主题文件</li>
+<li><strong>config.toml</strong>：网站配置文件</li>
+</ul>
+</blockquote>
+<p>3、安装喜欢的hugo主题，在以下链接中选择一个主题。</p>
+<p><a class="link" href="https://themes.gohugo.io/"  target="_blank" rel="noopener"
+    >https://themes.gohugo.io/</a></p>
+<p>推荐使用以下命令进行安装。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git submodule add &lt;主题克隆地址&gt; themes/&lt;主题名称&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此时theme文件夹里就有了刚刚下载的主题。</p>
+<p>注意：不要在这个文件夹内修改，因为主题一旦更新就会被覆盖你做的主题修改。如果需要更改主题部分，可以把主题的内容复制到根目录对应的文件，即可随便修改。</p>
+<p>4、主题中有许多预定义的格式设置，可以把它复制到theme文件夹同级的其他文件中。比如主题的content可以复制到自己网站的content。**不要傻瓜式的一次性复制过来，会报错！**一点一点的复制过来，复制一下，用下面代码运行一下。运行不了的不要复制过来，删掉复制过来的报错内容，没必要去修。</p>
+<p>注意：你每次做更改，需要按下<code>ctrl+c</code>后重新运行才会生效。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo server
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>5、把主题的hugo.yaml (也可能是其他的文件)，复制到根目录，按你自己的喜好来更改就行。</p>
+<blockquote>
+<p>有空了再慢慢配置修改，我们进行下一步。</p>
+</blockquote>
+<h2 id="网站写作">网站写作
+</h2><p>这个比较根据主题的内容来配置。建议把theme的content里，依葫芦画瓢。里面是什么配置就怎么去做。这里说点通用的。</p>
+<p>Hugo 允许在文章内容前面添加 <code>yaml</code>, <code>toml</code> 或者 <code>json</code> 格式的前置参数。（就是你的typora最上方灰色那部分配置）</p>
+<ul>
+<li>
+<p><strong>title</strong>: 文章标题.</p>
+</li>
+<li>
+<p><strong>subtitle</strong>: 文章副标题.</p>
+</li>
+<li>
+<p><strong>tags</strong>:  文章标签.</p>
+</li>
+<li>
+<p><strong>categories</strong>：文章分类.</p>
+</li>
+<li>
+<p><strong>date</strong>: 这篇文章创建的日期时间。它通常是从文章的前置参数中的 <code>date</code> 字段获取的，但是也可以在网站配置中设置.</p>
+</li>
+<li>
+<p><strong>lastmod</strong>: 上次修改内容的日期时间.</p>
+</li>
+<li>
+<p><strong>draft</strong>: 如果设为 <code>true</code>, 除非 <code>hugo</code> 命令使用了 <code>--buildDrafts</code>/<code>-D</code> 参数，这篇文章不会被渲染.</p>
+</li>
+<li>
+<p><strong>author</strong>: 文章作者.</p>
+</li>
+<li>
+<p><strong>authorLink</strong>: 文章作者的链接.</p>
+</li>
+<li>
+<p><strong>description</strong>: 文章内容的描述.</p>
+</li>
+<li>
+<p><strong>license</strong>: 这篇文章特殊的许可.</p>
+</li>
+<li>
+<p><strong>tags</strong>: 文章的标签.</p>
+</li>
+<li>
+<p><strong>categories</strong>: 文章所属的类别.</p>
+</li>
+<li>
+<p><strong>hiddenFromHomePage</strong>: 如果设为 <code>true</code>, 这篇文章将不会显示在主页上，但是此行为可以在网站配置中设置的.</p>
+</li>
+<li>
+<p><strong>featuredImage</strong>: 文章的特色图片.</p>
+</li>
+<li>
+<p><strong>featuredImagePreview</strong>: 用在主页预览的文章特色图片.</p>
+</li>
+<li>
+<p><strong>toc</strong>: 如果设为 <code>true</code>, 这篇文章会显示右侧目录.</p>
+</li>
+<li>
+<p><strong>autoCollapseToc</strong>: 如果设为 <code>true</code>, 文章目录会自动折叠.</p>
+</li>
+<li>
+<p><strong>math</strong>: 如果设为 <code>true</code>, 将自动渲染文章中的数学公式.</p>
+</li>
+<li>
+<p><strong>mapbox</strong>: 和网站配置中的 <code>params.mapbox</code> 对象相同.</p>
+</li>
+<li>
+<p><strong>lightgallery</strong>: 如果设为 <code>true</code>, 文章中的图片将可以按照画廊形式呈现.</p>
+</li>
+<li>
+<p><strong>linkToMarkdown</strong>: 如果设为 <code>true</code>, 内容的页脚将显示指向原始 Markdown 文件的链接.</p>
+</li>
+<li>
+<p><strong>share</strong>: 和网站配置中的 <code>params.share</code> 对象相同.</p>
+</li>
+<li>
+<p><strong>comment</strong>: 如果设为 <code>true</code>, 将启用评论系统.</p>
+</li>
+</ul>
+<blockquote>
+<p>其他的可以自行摸索，上面这些配置就够用了，大多数可以当字典用，现用现查。</p>
+</blockquote>
+<p>另外，文章都放在 content 的 post 文件夹中，如果没有这个 post 文件夹需要自己手动创建。</p>
+<p>在 post 里面写 markdown 格式文本才能看到（这是个坑，如果不这样就不会显示）。一般 theme 文件夹的 exampleSite 里都有示例的，依葫芦画瓢就行。</p>
+<p>不建议用hugo的命令生成默认初始文章，推荐复制以前写的文章自行修改即可。</p>
+<h2 id="github部署">github部署
+</h2><p>首先在根目录创建文件 <code>.gitignore</code> ，里面填写 <code>/public/</code> 即可，用于忽略多余文件加快推送速度。</p>
+<p>环境准备：</p>
+<ul>
+<li>在github 上配置 action secrets 密钥 PERSONAL_TOKEN ，这个可以在用户界面 Settings/Developer Settings ，选择Personal access tokens ，经典token，然后添加密钥。  密钥权限选择仓库所有权限和 workflow 权限。复制好令牌密钥备用。</li>
+<li>返回到博客项目，在项目的设置找到 Secrets and variables，里面的 action secrets 中，设置 secrets：
+<code>PERSONAL_TOKEN</code>，密码为上面的令牌密钥。</li>
+<li>在项目设置中找到rules，新建分支rule ，<strong>记得启用</strong>，把当前分支允许操作别的分支权限给打开。</li>
+</ul>
+<p>部署环节：</p>
+<p>我这里研究了一下 github ci，你可以根据我的github ci 配置来自行修改。</p>
+<p><del>学有余力的同学可以自行了解ci知识点，我也不太会，但配置出来能用就行。</del></p>
+<blockquote>
+<p>这个 github ci 是个大坑。</p>
+<ol>
+<li>它的根目录是基于内置的ubuntu来的，而不是仓库根目录，不要混淆！</li>
+<li>hugo 命令确实生成了 public 文件夹，但存放在内置的ubuntu 内，而不是直接生成在仓库内！</li>
+<li>一定要一点一点的去调试，不要一步到位！</li>
+<li>只要是操作其他分支的操作，都需要令牌，令牌权限以及分支权限</li>
+<li>checkout是检出代码，意思是从 github 仓库拉出代码，而不是 git 的切换分支！</li>
+</ol>
+</blockquote>
+<p>即创建 <code>.github\workflows\deploy.yml</code>，里面写以下内容。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">deploy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;main&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">workflow_dispatch</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">schedule</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">cron</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;0 0 * * *&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">permissions</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l">read</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">pages</span><span class="p">:</span><span class="w"> </span><span class="l">write</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">id-token</span><span class="p">:</span><span class="w"> </span><span class="l">write</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">jobs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">build</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu-latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">checkout</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/checkout@v4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">submodules</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">fetch-depth</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Setup Hugo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">peaceiris/actions-hugo@v2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">hugo-version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;latest&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Build Web</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">hugo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">push Web</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">peaceiris/actions-gh-pages@v3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">PERSONAL_TOKEN</span><span class="p">:</span><span class="w"> </span><span class="l">${{ secrets.PERSONAL_TOKEN }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">EXTERNAL_REPOSITORY</span><span class="p">:</span><span class="w"> </span><span class="l">paseofyou/paseofyou.github.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">PUBLISH_BRANCH</span><span class="p">:</span><span class="w"> </span><span class="l">page</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">PUBLISH_DIR</span><span class="p">:</span><span class="w"> </span><span class="l">./public</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">commit_message</span><span class="p">:</span><span class="w"> </span><span class="l">${{ github.event.head_commit.message }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">deploy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">github-pages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">${{ steps.deployment.outputs.page_url }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu-latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l">build</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Checkout</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/checkout@v4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ref</span><span class="p">:</span><span class="w"> </span><span class="l">page</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Setup Pages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/configure-pages@v5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Upload artifact</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/upload-pages-artifact@v3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">./</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Deploy to GitHub Pages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/deploy-pages@v4</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>现在为止，部署环境完成。现在每次推送文章都会自行构建网站，免去了每次写作后很多很多部署的麻烦。</p>
+<p>把这个推送上去就会自动部署。</p>
+<p>写好文章后，直接运行以下命令，把代码推上去即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git pull
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;&lt;备注你想要的提交信息&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">git push origin main
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果 git 有问题，可以根据以下命令来修复。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 以下内容是 git 配置，不用随便使用以下命令。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置 git push 默认分支，之后就能用 git push 推送就行，不用 git push -u origin main</span>
+</span></span><span class="line"><span class="cl">git push --set-upstream origin main 
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果你是新建的本地仓库，虽然和github的名字一模一样，但上传总会报错。用下面这个命令来合并即可。</span>
+</span></span><span class="line"><span class="cl">git pull origin main --allow-unrelated-histories
+</span></span><span class="line"><span class="cl"><span class="c1"># git 查看远程分支</span>
+</span></span><span class="line"><span class="cl">git remote -v
+</span></span><span class="line"><span class="cl"><span class="c1"># git 添加分支，其中 origin 是本地分支名称</span>
+</span></span><span class="line"><span class="cl">git remote add origin https://github.com/paseofyou/paseofyou.github.io.git
+</span></span><span class="line"><span class="cl"><span class="c1"># git 删除远程分支</span>
+</span></span><span class="line"><span class="cl">git remote remove origin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>有问题欢迎在评论区问我。（这部分挺难的）</p>
+<h2 id="评论系统">评论系统
+</h2><p>建议跟着官方教程走。</p>
+<p>我这里选择的方案是：</p>
+<ul>
+<li><a class="link" href="https://twikoo.js.org/quick-start.html"  target="_blank" rel="noopener"
+    >twikoo</a></li>
+<li><a class="link" href="https://twikoo.js.org/mongodb-atlas.html"  target="_blank" rel="noopener"
+    >mongoDB Atlas</a> 的 <code>AWS / Oregon (us-west-2)</code></li>
+<li><a class="link" href="https://twikoo.js.org/backend.html#hugging-face-%e9%83%a8%e7%bd%b2"  target="_blank" rel="noopener"
+    >Hugging Face 部署</a></li>
+</ul>
+<h2 id="本文引用">本文引用
+</h2><p>本文参考了许多博客，并对字典部分进行了摘抄，方便自己回看和帮助别人搭建，由衷感谢。</p>
+<ul>
+<li>
+<p>网站搭建部分：<a class="link" href="https://cuttontail.blog/blog/create-a-wesite-using-github-pages-and-hugo/#2-%E5%AE%89%E8%A3%85-hugo"  target="_blank" rel="noopener"
+    >文章1</a> ;</p>
+</li>
+<li>
+<p>网站写作部分：<a class="link" href="http://shuzang.top/2019/hugo-blog-article-write/"  target="_blank" rel="noopener"
+    >文章1</a> ;</p>
+</li>
+<li>
+<p>以及没有提到的博客，在此统一感谢</p>
+</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/misc/">Misc</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="//cdn.jsdelivr.net/npm/twikoo@1.6.21/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-submit-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-no,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+    .twikoo .el-button{
+        color: var(--twikoo-body-text-color)!important;
+    }
+    .twikoo .el-input__count {
+        color: var(--twikoo-body-text-color) !important;
+    }
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https:\/\/paseofyou-hugo-blog.hf.space',
+        el: '#tcomment',region: 'ap-shanghai',lang: 'zh-CN',})
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Example Person
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
