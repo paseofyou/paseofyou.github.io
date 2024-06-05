@@ -1,0 +1,3 @@
+[submodule "paseofyou/themes/hugo-theme-stack"]
+	path = paseofyou/themes/hugo-theme-stack
+	url = https://github.com/CaiJimmy/hugo-theme-stack/
