@@ -181,7 +181,7 @@ permissions:
   id-token: write
 
 jobs:
-  build:
+  手动推送:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -208,7 +208,7 @@ jobs:
           commit_message: ${{ github.event.head_commit.message }}
       
 
-  deploy:
+  自动定时更新:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
