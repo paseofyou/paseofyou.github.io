@@ -1,14 +1,10 @@
 ---
 title: 收藏
 links:
-  - title: GitHub
-    description: GitHub is the world's largest software development platform.
-    website: https://github.com
-    image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-  - title: TypeScript
-    description: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
-    website: https://www.typescriptlang.org
-    image: ts-logo-128.jpg
+  - title: 自学精灵
+    description: 一个良心的 java 知识收集站
+    website: https://learn.skyofit.com/
+    image: https://resource.skyofit.com/img/logo/learn.png
 menu:
     main: 
         weight: -50
