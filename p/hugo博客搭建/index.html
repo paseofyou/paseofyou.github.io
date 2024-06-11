@@ -568,7 +568,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">id-token</span><span class="p">:</span><span class="w"> </span><span class="l">write</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">jobs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">build</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">manual_push</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu-latest</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">checkout</span><span class="w">
@@ -595,12 +595,12 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">commit_message</span><span class="p">:</span><span class="w"> </span><span class="l">${{ github.event.head_commit.message }}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">deploy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">auto_update</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">github-pages</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">${{ steps.deployment.outputs.page_url }}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu-latest</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l">build</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l">manual_push</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Checkout</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/checkout@v4</span><span class="w">
