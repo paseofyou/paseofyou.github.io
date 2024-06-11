@@ -7,7 +7,23 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Example Person</copyright>
-        <lastBuildDate>Tue, 04 Jun 2024 10:12:50 +0800</lastBuildDate><atom:link href="https://paseofyou.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 11 Jun 2024 10:12:50 +0800</lastBuildDate><atom:link href="https://paseofyou.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>杂项</title>
+        <link>https://paseofyou.github.io/tags/%E6%9D%82%E9%A1%B9/</link>
+        <pubDate>Tue, 11 Jun 2024 10:12:50 +0800</pubDate>
+        
+        <guid>https://paseofyou.github.io/tags/%E6%9D%82%E9%A1%B9/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Java学习</title>
+        <link>https://paseofyou.github.io/tags/java%E5%AD%A6%E4%B9%A0/</link>
+        <pubDate>Thu, 06 Jun 2024 11:12:50 +0800</pubDate>
+        
+        <guid>https://paseofyou.github.io/tags/java%E5%AD%A6%E4%B9%A0/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Misc</title>
         <link>https://paseofyou.github.io/tags/misc/</link>
         <pubDate>Tue, 04 Jun 2024 10:12:50 +0800</pubDate>

@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Java基础 基础 Java中==和equals有什么区别？（难度：★ 频率：★★★） Java中==和equals有什么区别 String String, StringBuffer, StringBuilder区别（难度：★ 频率：★★★） Java-String, StringBuffer, StringBuilder的区别 String对象数目（难度：★★★ 频率：★） Java–创建对象的个数及其原理 intern方法的作用（难度：★★★ 频率：★） Java之String系列-intern方法的作用及原理 如何修改String对象的数据？（难度：★★★ 频率：★★） Java-String不可变的含义、原因、好处 static static的5种用法（难度：★★ 频率：★） Java-static-用法/使用位置/实例 为什么静态方法不能调用非静态方法和变量？（难度：★★★ 频率：★★★） 与类加载顺序有关，加载静态方法时，非静态的未初始化。见：JVM原理-类加载过程(有实例) 异常 异常有哪两大类？Throwable和Exception是什么关系？常见的RuntimeException有哪些？常见的Error有哪些？（难度：★★ 频率：★★★★） Java-异常/Exception-类型/原理 catch里return了，finally是否执行？（难度：★★ 频率：★） Java-异常/Exception-try/catch/finally的return顺序 IO 字节流与字符流区别？（难度：★★ 频率：★★） Java-IO-字节流与字符流的区别 BIO, NIO, AIO 区别？（难度：★★★ 频率：★） Java-BIO、NIO、AIO-区别/使用/实例 JDK8 JDK8新特性（难度：★★ 频率：★★） 接口允许default和static；lambda；stream；时间新API（LocalDateTime等）CompletableFuture；等 JDK8接口的default和static（难度：★★ 频率：★） Java-接口(JDK8新特性等)-详解/实例 JDK8 Stream API 流操作包括哪些部分？项目中怎么用的Stream？（难度：★★ 频率：★） Java-Stream(流)-使用/实例/流操作 语法 项目中对泛型的使用（难度：★★ 频率：★★） Java-泛型的应用 接口与抽象类的区别？（难度：★★ 频率：★） Java-接口与抽象类的区别 反射 Java反射：forName和classLoader的区别（难度：★★★ 频率：★） Java-通过反射实例化对象">
+<title>Java基础面试题（转载自学精灵）</title>
+
+<link rel='canonical' href='https://paseofyou.github.io/p/java%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98%E8%BD%AC%E8%BD%BD%E8%87%AA%E5%AD%A6%E7%B2%BE%E7%81%B5/'>
+
+<link rel="stylesheet" href="/scss/style.min.e8c7fca7d1c9294aa7a4f3426c225ee26540f7d94e39be0b5a4a5c8a49ca5a25.css"><meta property='og:title' content="Java基础面试题（转载自学精灵）">
+<meta property='og:description' content="Java基础 基础 Java中==和equals有什么区别？（难度：★ 频率：★★★） Java中==和equals有什么区别 String String, StringBuffer, StringBuilder区别（难度：★ 频率：★★★） Java-String, StringBuffer, StringBuilder的区别 String对象数目（难度：★★★ 频率：★） Java–创建对象的个数及其原理 intern方法的作用（难度：★★★ 频率：★） Java之String系列-intern方法的作用及原理 如何修改String对象的数据？（难度：★★★ 频率：★★） Java-String不可变的含义、原因、好处 static static的5种用法（难度：★★ 频率：★） Java-static-用法/使用位置/实例 为什么静态方法不能调用非静态方法和变量？（难度：★★★ 频率：★★★） 与类加载顺序有关，加载静态方法时，非静态的未初始化。见：JVM原理-类加载过程(有实例) 异常 异常有哪两大类？Throwable和Exception是什么关系？常见的RuntimeException有哪些？常见的Error有哪些？（难度：★★ 频率：★★★★） Java-异常/Exception-类型/原理 catch里return了，finally是否执行？（难度：★★ 频率：★） Java-异常/Exception-try/catch/finally的return顺序 IO 字节流与字符流区别？（难度：★★ 频率：★★） Java-IO-字节流与字符流的区别 BIO, NIO, AIO 区别？（难度：★★★ 频率：★） Java-BIO、NIO、AIO-区别/使用/实例 JDK8 JDK8新特性（难度：★★ 频率：★★） 接口允许default和static；lambda；stream；时间新API（LocalDateTime等）CompletableFuture；等 JDK8接口的default和static（难度：★★ 频率：★） Java-接口(JDK8新特性等)-详解/实例 JDK8 Stream API 流操作包括哪些部分？项目中怎么用的Stream？（难度：★★ 频率：★） Java-Stream(流)-使用/实例/流操作 语法 项目中对泛型的使用（难度：★★ 频率：★★） Java-泛型的应用 接口与抽象类的区别？（难度：★★ 频率：★） Java-接口与抽象类的区别 反射 Java反射：forName和classLoader的区别（难度：★★★ 频率：★） Java-通过反射实例化对象">
+<meta property='og:url' content='https://paseofyou.github.io/p/java%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98%E8%BD%AC%E8%BD%BD%E8%87%AA%E5%AD%A6%E7%B2%BE%E7%81%B5/'>
+<meta property='og:site_name' content='paseofyou的博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='java学习' /><meta property='article:published_time' content='2024-06-06T11:12:50&#43;08:00'/><meta property='article:modified_time' content='2024-06-06T11:12:50&#43;08:00'/>
+<meta name="twitter:title" content="Java基础面试题（转载自学精灵）">
+<meta name="twitter:description" content="Java基础 基础 Java中==和equals有什么区别？（难度：★ 频率：★★★） Java中==和equals有什么区别 String String, StringBuffer, StringBuilder区别（难度：★ 频率：★★★） Java-String, StringBuffer, StringBuilder的区别 String对象数目（难度：★★★ 频率：★） Java–创建对象的个数及其原理 intern方法的作用（难度：★★★ 频率：★） Java之String系列-intern方法的作用及原理 如何修改String对象的数据？（难度：★★★ 频率：★★） Java-String不可变的含义、原因、好处 static static的5种用法（难度：★★ 频率：★） Java-static-用法/使用位置/实例 为什么静态方法不能调用非静态方法和变量？（难度：★★★ 频率：★★★） 与类加载顺序有关，加载静态方法时，非静态的未初始化。见：JVM原理-类加载过程(有实例) 异常 异常有哪两大类？Throwable和Exception是什么关系？常见的RuntimeException有哪些？常见的Error有哪些？（难度：★★ 频率：★★★★） Java-异常/Exception-类型/原理 catch里return了，finally是否执行？（难度：★★ 频率：★） Java-异常/Exception-try/catch/finally的return顺序 IO 字节流与字符流区别？（难度：★★ 频率：★★） Java-IO-字节流与字符流的区别 BIO, NIO, AIO 区别？（难度：★★★ 频率：★） Java-BIO、NIO、AIO-区别/使用/实例 JDK8 JDK8新特性（难度：★★ 频率：★★） 接口允许default和static；lambda；stream；时间新API（LocalDateTime等）CompletableFuture；等 JDK8接口的default和static（难度：★★ 频率：★） Java-接口(JDK8新特性等)-详解/实例 JDK8 Stream API 流操作包括哪些部分？项目中怎么用的Stream？（难度：★★ 频率：★） Java-Stream(流)-使用/实例/流操作 语法 项目中对泛型的使用（难度：★★ 频率：★★） Java-泛型的应用 接口与抽象类的区别？（难度：★★ 频率：★） Java-接口与抽象类的区别 反射 Java反射：forName和classLoader的区别（难度：★★★ 频率：★） Java-通过反射实例化对象">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    <img src="https://q2.qlogo.cn/headimg_dl?dst_uin=863630017&amp;spec=100" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+                </a>
+                
+                    <span class="emoji">🍵</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">paseofyou的博客</a></h1>
+            <h2 class="site-description">记录过往，留有回忆</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/paseofyou'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>文章</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E6%94%B6%E8%97%8F/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>收藏</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#java基础">Java基础</a></li>
+    <li><a href="#集合">集合</a></li>
+    <li><a href="#jvm">JVM</a></li>
+    <li><a href="#多线程">多线程</a></li>
+    <li><a href="#mysql">MySQL</a></li>
+    <li><a href="#redis">Redis</a></li>
+    <li><a href="#设计模式">设计模式</a></li>
+    <li><a href="#框架">框架</a>
+      <ol>
+        <li><a href="#spring">Spring</a></li>
+        <li><a href="#springmvc"><strong>SpringMVC</strong></a></li>
+        <li><a href="#springboot">SpringBoot</a></li>
+        <li><a href="#mybatis">MyBatis</a></li>
+      </ol>
+    </li>
+    <li><a href="#中间件">中间件</a>
+      <ol>
+        <li><a href="#mq">MQ</a></li>
+        <li><a href="#shiro">Shiro</a></li>
+      </ol>
+    </li>
+    <li><a href="#分布式">分布式</a>
+      <ol>
+        <li><a href="#综合">综合</a></li>
+        <li><a href="#springcloud">SpringCloud</a></li>
+      </ol>
+    </li>
+    <li><a href="#elk"><strong>ELK</strong></a></li>
+    <li><a href="#综合-1">综合</a></li>
+    <li><a href="#杂项">杂项</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/java/" style="background-color: #2a9d8f; color: #fff;">
+                java面试
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/java%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98%E8%BD%AC%E8%BD%BD%E8%87%AA%E5%AD%A6%E7%B2%BE%E7%81%B5/">Java基础面试题（转载自学精灵）</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jun 06, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 5 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="java基础">Java基础
+</h2><p><strong>基础</strong></p>
+<p>Java中==和equals有什么区别？（难度：★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/2224"  target="_blank" rel="noopener"
+    >Java中==和equals有什么区别</a></p>
+<p><strong>String</strong></p>
+<p>String, StringBuffer, StringBuilder区别（难度：★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/62"  target="_blank" rel="noopener"
+    >Java-String, StringBuffer, StringBuilder的区别</a></p>
+<p>String对象数目（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/196"  target="_blank" rel="noopener"
+    >Java–创建对象的个数及其原理</a></p>
+<p>intern方法的作用（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/211"  target="_blank" rel="noopener"
+    >Java之String系列-intern方法的作用及原理</a></p>
+<p>如何修改String对象的数据？（难度：★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/266"  target="_blank" rel="noopener"
+    >Java-String不可变的含义、原因、好处</a></p>
+<p><strong>static</strong></p>
+<p>static的5种用法（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/277"  target="_blank" rel="noopener"
+    >Java-static-用法/使用位置/实例</a></p>
+<p>为什么静态方法不能调用非静态方法和变量？（难度：★★★ 频率：★★★）</p>
+<p>与类加载顺序有关，加载静态方法时，非静态的未初始化。见：<a class="link" href="https://learn.skyofit.com/archives/406"  target="_blank" rel="noopener"
+    >JVM原理-类加载过程(有实例)</a></p>
+<p><strong>异常</strong></p>
+<p>异常有哪两大类？Throwable和Exception是什么关系？常见的RuntimeException有哪些？常见的Error有哪些？（难度：★★ 频率：★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/290"  target="_blank" rel="noopener"
+    >Java-异常/Exception-类型/原理</a></p>
+<p>catch里return了，finally是否执行？（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/297"  target="_blank" rel="noopener"
+    >Java-异常/Exception-try/catch/finally的return顺序</a></p>
+<p><strong>IO</strong></p>
+<p>字节流与字符流区别？（难度：★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/299"  target="_blank" rel="noopener"
+    >Java-IO-字节流与字符流的区别</a></p>
+<p>BIO, NIO, AIO 区别？（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/301"  target="_blank" rel="noopener"
+    >Java-BIO、NIO、AIO-区别/使用/实例</a></p>
+<p><strong>JDK8</strong></p>
+<p>JDK8新特性（难度：★★ 频率：★★）</p>
+<p>接口允许default和static；lambda；stream；时间新API（LocalDateTime等）CompletableFuture；等</p>
+<p>JDK8接口的default和static（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/303"  target="_blank" rel="noopener"
+    >Java-接口(JDK8新特性等)-详解/实例</a></p>
+<p>JDK8 Stream API 流操作包括哪些部分？项目中怎么用的Stream？（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/306"  target="_blank" rel="noopener"
+    >Java-Stream(流)-使用/实例/流操作</a></p>
+<p><strong>语法</strong></p>
+<p>项目中对泛型的使用（难度：★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/349"  target="_blank" rel="noopener"
+    >Java-泛型的应用</a></p>
+<p>接口与抽象类的区别？（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/351"  target="_blank" rel="noopener"
+    >Java-接口与抽象类的区别</a></p>
+<p><strong>反射</strong></p>
+<p>Java反射：forName和classLoader的区别（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/355"  target="_blank" rel="noopener"
+    >Java-通过反射实例化对象</a></p>
+<p>反射机制中可以获取private成员的值吗？（难度：★★★ 频率：★）</p>
+<ul>
+<li>可以。法1：通过Field类提供的set()和get()方法 法2：通过setter和getter</li>
+<li>见：<a class="link" href="https://learn.skyofit.com/archives/2673#%e4%bf%ae%e6%94%b9%e5%b1%9e%e6%80%a7"  target="_blank" rel="noopener"
+    >Java反射系列-应用</a></li>
+</ul>
+<p><strong>其他</strong></p>
+<p>拆箱与装箱（难度：★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/358"  target="_blank" rel="noopener"
+    >Java-自动拆箱/装箱/实例化顺序/缓存</a></p>
+<h2 id="集合">集合
+</h2><p><strong>List</strong></p>
+<p>List与Set的区别（难度：★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/361"  target="_blank" rel="noopener"
+    >ArrayList与LinkedList以及List与数组、Set的区别</a></p>
+<p>ArrayList与LinkedList异同点？（难度：★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/361"  target="_blank" rel="noopener"
+    >ArrayList与LinkedList以及List与数组、Set的区别</a></p>
+<p>List与数组的区别？（难度：★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/361"  target="_blank" rel="noopener"
+    >ArrayList与LinkedList以及List与数组、Set的区别</a></p>
+<p>ArrayList是否线程安全？如何线程安全地操作ArrayList？（难度：★★★ 频率：★★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/363"  target="_blank" rel="noopener"
+    >Java-ArrayList保证线程安全的方法</a></p>
+<p>ArrayList扩容机制（难度：★★★ 频率：★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/368"  target="_blank" rel="noopener"
+    >Java-ArrayList扩容的原理</a></p>
+<p>List.subList的坑？（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/370"  target="_blank" rel="noopener"
+    >Java的List之坑-subList与原始List相互影响</a></p>
+<p>List如何安全删除（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/372"  target="_blank" rel="noopener"
+    >Java-安全删除的方法</a></p>
+<p>List如何去重？（难度：★ 频率：★★）</p>
+<p>stream，或：<a class="link" href="https://learn.skyofit.com/archives/374"  target="_blank" rel="noopener"
+    >Java-去重的方法</a></p>
+<p>List如何实现排序（难度：★ 频率：★★）</p>
+<p>stream，或：<a class="link" href="https://learn.skyofit.com/archives/376"  target="_blank" rel="noopener"
+    >Java-排序的方法</a></p>
+<p>为什么引入迭代器？（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/378"  target="_blank" rel="noopener"
+    >Java类集-为什么引入迭代器</a></p>
+<p><strong>Map</strong></p>
+<p>HashMap、TreeMap、LinkedHashMap的区别？（难度：★★ 频率：★★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/380"  target="_blank" rel="noopener"
+    >HashMap,TreeMap,LinkedHashMap的区别</a></p>
+<p>JDK8的HashMap的改变？（难度：★★ 频率：★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/382"  target="_blank" rel="noopener"
+    >Java-JDK7与JDK8的HashMap的区别</a></p>
+<p>HashMap数据结构、哈希冲突解决方法（难度：★★★ 频率：★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/387"  target="_blank" rel="noopener"
+    >Java-HashMap的底层原理</a></p>
+<p><a class="link" href="https://learn.skyofit.com/archives/392"  target="_blank" rel="noopener"
+    >hash冲突的4种解决方案</a></p>
+<p>HashMap扩容的原理（难度：★★★ 频率：★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/394"  target="_blank" rel="noopener"
+    >Java-HashMap扩容的原理</a></p>
+<p>HashMap为什么线程不安全？如何线程安全地操作？（难度：★★★ 频率：★★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/396"  target="_blank" rel="noopener"
+    >Java-HashMap保证线程安全的方法</a></p>
+<p>ConcurrentHashMap的原理？JDK8有什么改变？（难度：★★★ 频率：★★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/384"  target="_blank" rel="noopener"
+    >Java-ConcurrentHashMap的原理</a></p>
+<p>HashMap和HashSet的区别及其实现原理？（难度：★★ 频率：★）</p>
+<ul>
+<li>HashMap：将key.hashCode()作为hash值存放，将value直接作为value。</li>
+<li>HashSet：调用HashMap的put方法；将key.hashCode()作为hash值存放，将HashSet类的final变量PRESENT作为value。</li>
+</ul>
+<p>HashMap如果使用对象最为key，要注意什么？（难度：★★ 频率：★）</p>
+<ul>
+<li>重写hashCode和equals。</li>
+</ul>
+<p>对象比较为什么重写hashCode和equals？（难度：★★ 频率：★）</p>
+<ul>
+<li>重写equals方法时需要重写hashCode方法，主要是针对Map、Set等集合类型的使用；
+<ul>
+<li>a: Map、Set等集合类型存放的对象必须是唯一的；</li>
+<li>b: 集合类判断两个对象是否相等，是先判断HashCode是否相等，如果HashCode返回TRUE，还要再判断equals返回值是否ture，只有两者都返回ture，才认为该两个对象是相等的。</li>
+</ul>
+</li>
+</ul>
+<h2 id="jvm">JVM
+</h2><p><strong>运行时数据区</strong></p>
+<p>运行时数据区是怎样的？线程安全（即线程私有）的有哪些？（难度：★★ 频率：★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/403"  target="_blank" rel="noopener"
+    >JVM原理-运行时数据区域</a></p>
+<p>对象实例、类信息、常量、静态变量分别在运行时数据区的哪个位置？（难度：★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/403"  target="_blank" rel="noopener"
+    >JVM原理-运行时数据区域</a></p>
+<p><strong>类加载</strong></p>
+<p>Java类加载流程？初始化流程？（难度：★★ 频率：★★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/406"  target="_blank" rel="noopener"
+    >JVM原理-类加载过程(有实例)</a></p>
+<p>JVM双亲委派模型（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/409"  target="_blank" rel="noopener"
+    >JVM原理-双亲委派模型</a></p>
+<p><strong>内存泄露</strong></p>
+<p>Java内存泄露什么时候会发生？（难度：★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1337"  target="_blank" rel="noopener"
+    >Java-内存泄露的原因及解决方案(大全)</a></p>
+<p>为什么内部类持有外部类可能内存泄露？如何解决？（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/412"  target="_blank" rel="noopener"
+    >Java-内部类持有外部类导致内存泄露的原因和解决方案</a></p>
+<p>为什么ThreadLocal会导致内存泄露？如何解决？（难度：★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/439"  target="_blank" rel="noopener"
+    >Java-ThreadLocal导致内存泄露的原因和解决方案</a></p>
+<p><strong>垃圾回收</strong></p>
+<p>JDK8垃圾回收器的流程？（难度：★★★ 频率：★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/441"  target="_blank" rel="noopener"
+    >JVM-内存模型/垃圾回收流程</a></p>
+<p>引用类型及其含义（难度：★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/446"  target="_blank" rel="noopener"
+    >Java引用类型(强引用、软引用、弱引用、虚引用)的区别</a></p>
+<p>finalize方法做什么用的？（难度：★ 频率：★）</p>
+<ul>
+<li>垃圾回收时会调用此方法</li>
+</ul>
+<p>可以作为GC.Roots的对象有哪些？（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/453"  target="_blank" rel="noopener"
+    >JVM-可作为GC Roots的对象</a></p>
+<p>调用System.gc()会立刻垃圾回收吗？（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/456"  target="_blank" rel="noopener"
+    >JVM-Java垃圾回收的原理与触发时机</a></p>
+<p>Minor GC和Full GC的触发时机。（难度：★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/456"  target="_blank" rel="noopener"
+    >JVM-Java垃圾回收的原理与触发时机</a></p>
+<p>频繁Full GC如何排查（难度：★★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/459"  target="_blank" rel="noopener"
+    >Java线上问题排查-系统问题排查的方法/步骤</a></p>
+<p>JDK默认的垃圾回收器是什么？（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/462"  target="_blank" rel="noopener"
+    >JVM-垃圾回收器的详解/对比</a></p>
+<p>CMS和G1区别（难度：★★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/465"  target="_blank" rel="noopener"
+    >JVM-CMS和G1垃圾回收器的区别和执行流程</a></p>
+<p>CMS与其他老年代垃圾回收器的区别？（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/462"  target="_blank" rel="noopener"
+    >JVM-垃圾回收器的详解/对比</a></p>
+<p><strong>JVM调优</strong></p>
+<p>JVM通常设置哪些参数来调优？（难度：★★ 频率：★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/475"  target="_blank" rel="noopener"
+    >JVM调优系列-常用的设置</a></p>
+<p><strong>其他</strong></p>
+<p>怎么分配堆外内存（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/478"  target="_blank" rel="noopener"
+    >Java堆外内存–使用/作用</a></p>
+<h2 id="多线程">多线程
+</h2><p><strong>综合</strong></p>
+<p>项目中哪些地方用到了多线程？（难度：★★★ 频率：★★★★★）</p>
+<ul>
+<li>定时任务。  比如：定时处理数据进行统计等</li>
+<li>异步处理。  比如：发邮件， 记录日志， 发短信等。比如注册成功后发激活邮件</li>
+<li>批量处理，缩短响应时间。比如：<a class="link" href="https://learn.skyofit.com/archives/481"  target="_blank" rel="noopener"
+    >SpringBoot-多线程处理</a></li>
+</ul>
+<p>线程的安全性问题体现在哪些方面？（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/503"  target="_blank" rel="noopener"
+    >Java多线程-内存模型(JMM)-详解</a></p>
+<p>死锁产生的条件？（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/506"  target="_blank" rel="noopener"
+    >Java多线程-基础知识</a></p>
+<p>i++是否线程安全？（难度：★ 频率：★）</p>
+<ul>
+<li>不是线程安全的。要线程安全可以用java.util.concurrent.atomic</li>
+</ul>
+<p>JMM内存结构（难度：★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/503"  target="_blank" rel="noopener"
+    >Java多线程-内存模型(JMM)-详解</a></p>
+<p><strong>synchronized</strong></p>
+<p>synchronized用于静态方法与普通方法有区别吗？（难度：★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/508"  target="_blank" rel="noopener"
+    >Java-synchronized的使用</a></p>
+<p>synchronized锁的升级是怎样的？（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/510"  target="_blank" rel="noopener"
+    >Java-synchronized之锁的升级</a></p>
+<p><strong>类库</strong></p>
+<p>SimpleDateFormat线程安全吗？怎么保证线程安全？（难度：★★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/353"  target="_blank" rel="noopener"
+    >SimpleDateFormat-线程安全的操作方法(有实例)</a></p>
+<p><strong>线程池</strong></p>
+<p>线程池缺点（难度：★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/514"  target="_blank" rel="noopener"
+    >Java-为什么使用线程池？优缺点是什么？</a></p>
+<p>线程池有哪些参数？（难度：★★ 频率：★★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/488"  target="_blank" rel="noopener"
+    >Java线程池-核心参数/大小设置/使用示例</a></p>
+<p>CPU密集与IO密集的场景如何设置线程池参数？（难度：★★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/488"  target="_blank" rel="noopener"
+    >Java线程池-核心参数/大小设置/使用示例</a></p>
+<p>线程池有哪几种？它们分别对应什么队列？（难度：★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/516"  target="_blank" rel="noopener"
+    >Java线程池-种类(Executors的用法)</a></p>
+<p><a class="link" href="https://learn.skyofit.com/archives/523"  target="_blank" rel="noopener"
+    >Java-阻塞队列(BlockingQueue)的用法(有实例)</a></p>
+<p>什么时候触发最大线程条件？（难度：★★ 频率：★★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/531"  target="_blank" rel="noopener"
+    >Java-线程池的原理(执行流程/状态转换)</a></p>
+<p>线程池拒绝策略有哪些？默认是哪个？（难度：★★ 频率：★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/490"  target="_blank" rel="noopener"
+    >Java线程池-饱和策略(拒绝策略)的使用(有实例)</a></p>
+<p>线程池里的异常时如何处理的？（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/537"  target="_blank" rel="noopener"
+    >Java-线程池全局异常处理的方法(有实例)</a></p>
+<p><strong>JUC</strong></p>
+<p>ReentrantLock显著缺点？（难度：★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/539"  target="_blank" rel="noopener"
+    >Java-ReentrantLock的用法和原理</a></p>
+<p>CAS和AQS了解吗？原理是什么（难度：★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/544"  target="_blank" rel="noopener"
+    >Java-CAS的原理和优缺点</a></p>
+<p><a class="link" href="https://learn.skyofit.com/archives/546"  target="_blank" rel="noopener"
+    >Java-AQS的原理</a></p>
+<p>synchronized与ReentrantLock区别？（难度：★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/549"  target="_blank" rel="noopener"
+    >synchronized与volatile、ReentrantLock的区别</a></p>
+<p>有哪些原子类？用过哪个？（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/551"  target="_blank" rel="noopener"
+    >Java-原子类(atomic)的用法(有实例)</a></p>
+<p>项目里用了哪些锁？（难度：★★★ 频率：★★★）</p>
+<ul>
+<li>单体项目里用到了ReentrantLock、synchronized；</li>
+<li>单例模式里用到了synchronized</li>
+</ul>
+<p>JDK8新增的异步编程了解吗？（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/554"  target="_blank" rel="noopener"
+    >Java异步-CompletableFuture-实例</a></p>
+<p>多线程顺序交替执行的方法（有三个线程A,B,C，依次打印出A,B,C）（难度：★★★ 频率：★）</p>
+<ul>
+<li>方案1：
+<ul>
+<li><a class="link" href="https://learn.skyofit.com/archives/484"  target="_blank" rel="noopener"
+    >Java-使用阻塞队列实现顺序消费-方法/实例</a></li>
+</ul>
+</li>
+<li>方案2：模拟阻塞队列
+<ul>
+<li>使用Object的wait(), notify()，使用一个互斥锁。</li>
+</ul>
+</li>
+</ul>
+<h2 id="mysql">MySQL
+</h2><p><strong>综合问题</strong></p>
+<p>MyISAM与InnoDB区别（难度：★ 频率：★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/556"  target="_blank" rel="noopener"
+    >MySQL存储引擎-MyISAM和InnoDB的区别</a></p>
+<p>sql注入怎么解决？（难度：★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/558"  target="_blank" rel="noopener"
+    >数据库-防止SQL注入的方案</a></p>
+<p>三大范式（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/560"  target="_blank" rel="noopener"
+    >数据库-三大范式-介绍/使用/实例</a></p>
+<p>怎么样幂等（难度：★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/569"  target="_blank" rel="noopener"
+    >数据库-幂等-方案</a></p>
+<p>一条SQL查询语句的执行流程（难度：★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/573"  target="_blank" rel="noopener"
+    >MySQL一条SQL查询语句的执行流程</a></p>
+<p>为什么不要用外键？（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/586"  target="_blank" rel="noopener"
+    >数据库-外键-用法/缺点</a></p>
+<p>批量往数据库导入1000万条数据方法？（难度：★★ 频率：★）</p>
+<ul>
+<li>存储过程</li>
+</ul>
+<p>数据库优化方式（难度：★★★ 频率：★）</p>
+<ul>
+<li>建立索引、字段冗余（减少联表查询）、使用缓存、读写分离、分库分表</li>
+</ul>
+<p>怎么调试存储过程（难度：★★ 频率：★）</p>
+<p>使用工具：dbForge Studio for MySQL</p>
+<p>MySQL的三种驱动类型 难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/590"  target="_blank" rel="noopener"
+    >MySQL-时区/连接器/驱动类型</a></p>
+<p><strong>事务</strong></p>
+<p>隔离级别是怎样的？脏读、幻读是什么意思？（难度：★★★ 频率：★★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/592"  target="_blank" rel="noopener"
+    >MySQL隔离级别-未提交读，提交读，可重复读，序列化-详解(有示例)</a></p>
+<p>隔离级别如何选用？（难度：★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/592"  target="_blank" rel="noopener"
+    >MySQL隔离级别-未提交读，提交读，可重复读，序列化-详解(有示例)</a></p>
+<p>ACID（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/598"  target="_blank" rel="noopener"
+    >数据库-事务的ACID-介绍/详解</a></p>
+<p>隔离级别是如何实现的？（MVCC）（难度：★★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/600"  target="_blank" rel="noopener"
+    >MySQL隔离级别的实现方式-MVCC</a></p>
+<p>快照读与当前读 是怎样的？（难度：★★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/600"  target="_blank" rel="noopener"
+    >MySQL隔离级别的实现方式-MVCC</a></p>
+<p><strong>索引</strong></p>
+<p>索引的种类（难度：★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/606"  target="_blank" rel="noopener"
+    >MySQL索引的类型</a></p>
+<p>数据库使用索引的缺点？（难度：★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/608"  target="_blank" rel="noopener"
+    >MySQL-索引的优点/缺点/创建索引的原则</a></p>
+<p>创建索引的原则（难度：★★ 频率：★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/608"  target="_blank" rel="noopener"
+    >MySQL-索引的优点/缺点/创建索引的原则</a></p>
+<p>索引什么时候会失效（难度：★★ 频率：★★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/610"  target="_blank" rel="noopener"
+    >MySQL-索引失效的原因/解决方案</a></p>
+<p>创建了A, B, C联合索引，使用B,C能否索引（难度：★★★ 频率：★★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/611"  target="_blank" rel="noopener"
+    >MySQL联合索引-使用/原理/优化</a></p>
+<p>LIKE什么时候走索引，什么时候不走索引？（难度：★★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/614"  target="_blank" rel="noopener"
+    >MySQL索引的优化-LIKE模糊查询</a></p>
+<p>ORDER BY是否走索引？（难度：★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/617"  target="_blank" rel="noopener"
+    >MySQL索引的优化-ORDER BY</a></p>
+<p>聚集索引是什么？什么是回表？（难度：★★★★ 频率：★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/620"  target="_blank" rel="noopener"
+    >MySQL-聚集索引/辅助索引/回表查询/覆盖索引(原理及优化)</a></p>
+<p>大表分页的优化方法？（难度：★★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/631"  target="_blank" rel="noopener"
+    >MySQL-大数据量的分页优化方案</a></p>
+<p>索引原理；为什么采用B+树？（难度：★★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/634"  target="_blank" rel="noopener"
+    >MySQL原理-索引的原理</a></p>
+<p><strong>锁</strong></p>
+<p>共享锁与独占锁的区别？（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/639#%e5%85%b1%e4%ba%ab%e9%94%81%e4%b8%8e%e7%8b%ac%e5%8d%a0%e9%94%81"  target="_blank" rel="noopener"
+    >MySQL-行级锁与表级锁</a></p>
+<p>什么时候会死锁？（难度：★★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/641"  target="_blank" rel="noopener"
+    >MySQL-死锁的原因及解决方法</a></p>
+<p><strong>分库分表</strong></p>
+<p>什么时候考虑分库分表？分库分表要考虑什么问题？（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/643"  target="_blank" rel="noopener"
+    >数据库-分库分表-方案/切分方式/注意的问题</a></p>
+<p>原来没分库分表，后期如何分库分表？（难度：★★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/645"  target="_blank" rel="noopener"
+    >数据库-单表转分库分表</a></p>
+<p>分库分表的中间件（难度：★★ 频率：★★）</p>
+<ul>
+<li>Sharding-JDBC、Mycat</li>
+</ul>
+<p>水平分表，有哪些规则？（难度：★★★ 频率：★★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/649"  target="_blank" rel="noopener"
+    >数据库-分库分表-垂直分表与水平分表</a></p>
+<p>如何维护全局的id（难度：★★★ 频率：★★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/671"  target="_blank" rel="noopener"
+    >分布式-生成数据库全局唯一ID的方案</a></p>
+<p><strong>语句</strong></p>
+<p>语句类笔试题（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/657"  target="_blank" rel="noopener"
+    >MySQL-常见业务/笔试题</a></p>
+<p>OR与IN的效率？（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/661"  target="_blank" rel="noopener"
+    >MySQL-SQL语句优化-大全</a></p>
+<p>内联结，全（外）联结，左联结，右联结，的含义？（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/663"  target="_blank" rel="noopener"
+    >MySQL-内联结/全联结/左联结/右联结的区别</a></p>
+<h2 id="redis">Redis
+</h2><p><strong>基本问题</strong></p>
+<p>Redis数据类型及其使用场景（难度：★★★ 频率：★★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/693"  target="_blank" rel="noopener"
+    >Redis-数据类型及其使用场景</a></p>
+<p>Redis的数据类型对应的底层结构是怎样的？（难度：★★★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/700"  target="_blank" rel="noopener"
+    >Redis原理-数据类型的底层结构</a></p>
+<p>Redis为什么很快？（难度：★★ 频率：★★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/702"  target="_blank" rel="noopener"
+    >Redis原理-为什么性能高，速度快？</a></p>
+<p>Redis是单线程为什么速度依然快？（难度：★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/702"  target="_blank" rel="noopener"
+    >Redis原理-为什么性能高，速度快？</a></p>
+<p>Redis持久化AOF，RDB区别（难度：★★ 频率：★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/705"  target="_blank" rel="noopener"
+    >Redis持久化-AOF和RDB的区别</a></p>
+<p>持久化：长久下来AOF文件会很大怎么办？（难度：★★★ 频率：★★）</p>
+<p>使用重写机制。见：<a class="link" href="https://learn.skyofit.com/archives/707"  target="_blank" rel="noopener"
+    >Redis-重写机制（减小AOF文件大小）</a></p>
+<p>Redis有哪些原子命令？（难度：★★★ 频率：★）</p>
+<ul>
+<li>Redis所有单个命令都是原子性的。</li>
+</ul>
+<p>穿透、无底洞、雪崩、击穿 解决方案？（难度：★★★ 频率：★★★★★）</p>
+<ul>
+<li><a class="link" href="https://learn.skyofit.com/archives/710"  target="_blank" rel="noopener"
+    >Redis-缓存穿透-含义/原因/解决方案</a></li>
+<li><a class="link" href="https://learn.skyofit.com/archives/734"  target="_blank" rel="noopener"
+    >Redis-无底洞-含义/原因/解决方案</a></li>
+<li><a class="link" href="https://learn.skyofit.com/archives/745"  target="_blank" rel="noopener"
+    >Redis-缓存雪崩-含义/原因/解决方案</a></li>
+<li><a class="link" href="https://learn.skyofit.com/archives/749"  target="_blank" rel="noopener"
+    >Redis-缓存击穿-含义/原因/解决方案</a></li>
+</ul>
+<p>Redis的发布订阅机制及其使用场景（难度：★★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/751"  target="_blank" rel="noopener"
+    >Redis-发布订阅-原理/使用场景</a></p>
+<p>内存回收机制是怎样的？（或者说：淘汰策略）（难度：★★★ 频率：★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/756"  target="_blank" rel="noopener"
+    >Redis–内存回收原理（淘汰策略）</a></p>
+<p>给一个key怎么知道是用的哪种数据类型？（难度：★ 频率：★）</p>
+<ul>
+<li>用type命令。例如：type key1</li>
+</ul>
+<p>为什么使用Redis，不用Memcache和MongoDB？（难度：★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/760"  target="_blank" rel="noopener"
+    >Redis，Memcache，MongoDB三者的区别</a></p>
+<p>Redis与数据库如何同步？各个方式的缺点是什么？（难度：★★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/762"  target="_blank" rel="noopener"
+    >Redis-保证缓存与数据库的一致性-解决方案</a></p>
+<p>Redis很慢，如何排查及解决？（难度：★★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/767"  target="_blank" rel="noopener"
+    >Redis-变慢原因及排查方法</a></p>
+<p>多线程操作同一个Key如何保证一致性？（微服务部署多个实例时如何保证一致性？）（难度：★★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/779"  target="_blank" rel="noopener"
+    >Redis-多线程竞争同一key-解决方案</a></p>
+<p>秒杀的时候怎么使用Redis？（难度：★★★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/782"  target="_blank" rel="noopener"
+    >Redis-秒杀的解决方案</a></p>
+<p>布隆过滤器原理？什么时候会误判？（难度：★★★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/716"  target="_blank" rel="noopener"
+    >Redis-布隆过滤器-使用/原理/实例</a></p>
+<p>用Redis如何实现延迟队列？（难度：★★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/784"  target="_blank" rel="noopener"
+    >Redis高级-延迟队列</a></p>
+<p><strong>分布式锁</strong></p>
+<p>Redis做分布式锁如何处理超时时间？比如：超时时间是5秒，但要执行20秒，相当于没锁住；超时时间是20秒，但只需执行5秒（浪费）（难度：★★★★ 频率：★★★）</p>
+<ul>
+<li>设置中等长度的时间，线程执行完删除这个值；另起线程，定期去刷新这个值。Redisson的分布式锁就是这个方案，见：<a class="link" href="https://learn.skyofit.com/archives/786"  target="_blank" rel="noopener"
+    >Redisson-分布式锁的原理</a></li>
+</ul>
+<p>Redis实现分布式锁，集群环境如何处理主节点宕机这种情况？（难度：★★★★★ 频率：★）</p>
+<ul>
+<li>使用RedLock红锁算法：若过半的Redis节点能够加锁成功则表示获取锁成功，类似于zk实现分布式锁方式。见：<a class="link" href="https://learn.skyofit.com/archives/1338"  target="_blank" rel="noopener"
+    >Redisson-红锁(Redlock)-使用/原理</a></li>
+</ul>
+<p><strong>集群</strong></p>
+<p>多节点有哪些部署方式？（难度：★★ 频率：★）</p>
+<ul>
+<li>主从、哨兵、集群（Cluster）</li>
+</ul>
+<p>集群不支持事务，如何解决？（难度：★★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/788"  target="_blank" rel="noopener"
+    >Redis集群-使用/注意事项</a></p>
+<p>主从集群中主节点死了以后，是否还能使用？如何解决？（难度：★★★ 频率：★）</p>
+<ul>
+<li>可以使用哨兵部署，自动故障转移。</li>
+</ul>
+<p>读写分离时读写分别在哪个节点（难度：★★ 频率：★）</p>
+<ul>
+<li>在主节点上写，在从节点上读。</li>
+</ul>
+<p><strong>集群（Cluster）</strong></p>
+<p>集群（Cluster）的数据是怎样分布的？（难度：★★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/2684"  target="_blank" rel="noopener"
+    >Redis集群-数据分布</a></p>
+<p>集群（Cluster）如何进行节点通信？（难度：★★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/823"  target="_blank" rel="noopener"
+    >Redis集群-节点通信的过程(原理)</a></p>
+<p>集群（Cluster）如何进行扩展（伸缩）？（难度：★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/790"  target="_blank" rel="noopener"
+    >Redis集群-伸缩的过程(原理)</a></p>
+<p>集群（Cluster）如何进行故障转移？（难度：★★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/829"  target="_blank" rel="noopener"
+    >Redis集群-故障转移的过程(原理)</a></p>
+<h2 id="设计模式">设计模式
+</h2><p>项目里用到了哪些设计模式，怎么用的？（难度：★★★ 频率：★★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/856"  target="_blank" rel="noopener"
+    >Java设计模式-在项目中的应用</a></p>
+<p>设计模式的原则（难度：★★ 频率：★）</p>
+<ul>
+<li>这个我老是记不住，我用这个口诀：单开里依接合迪。对应每个原则的第一个字。</li>
+<li>见：<a class="link" href="https://learn.skyofit.com/archives/1339"  target="_blank" rel="noopener"
+    >Java设计模式-原则</a></li>
+</ul>
+<p>设计模式的类别（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/863"  target="_blank" rel="noopener"
+    >Java设计模式-分类及功能</a></p>
+<p>单例模式的写法？（难度：★★ 频率：★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/278"  target="_blank" rel="noopener"
+    >Java设计模式-单例模式(6种写法)</a></p>
+<p>手写双重检验单例（为什么用volatile，为什么两次if判断）（难度：★★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/278"  target="_blank" rel="noopener"
+    >Java设计模式-单例模式(6种写法)</a></p>
+<p>静态代理与动态代理区别？（难度：★★★ 频率：★★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/865"  target="_blank" rel="noopener"
+    >Java-代理模式(静态代理与动态代理)的使用</a></p>
+<h2 id="框架">框架
+</h2><h3 id="spring">Spring
+</h3><p><strong>IOC</strong></p>
+<p>Spring循环依赖解决方法及原理（难度：★★★★ 频率：★★★★）</p>
+<ul>
+<li><a class="link" href="https://learn.skyofit.com/archives/877"  target="_blank" rel="noopener"
+    >Spring-循环依赖的解决方案-实例</a></li>
+<li><a class="link" href="https://learn.skyofit.com/archives/887"  target="_blank" rel="noopener"
+    >Spring循环依赖的原理(三)-原理概述</a></li>
+</ul>
+<p>Spring的循环依赖用的是三级缓存，为什么不是两级？（难度：★★★★ 频率：★★）</p>
+<ul>
+<li><a class="link" href="https://learn.skyofit.com/archives/888"  target="_blank" rel="noopener"
+    >Spring循环依赖的原理(四)-为什么用三级缓存，而不是二级</a></li>
+</ul>
+<p>FactoryBean和BeanFactory区别（难度：★★★★ 频率：★★）</p>
+<ul>
+<li><a class="link" href="https://learn.skyofit.com/archives/957"  target="_blank" rel="noopener"
+    >Spring-BeanFactory-使用/原理/详解</a></li>
+<li><a class="link" href="https://learn.skyofit.com/archives/955"  target="_blank" rel="noopener"
+    >Spring-FactoryBean-使用/原理/详解</a></li>
+</ul>
+<p>BeanFactory和ApplicationContext区别？（难度：★★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/959"  target="_blank" rel="noopener"
+    >Spring-ApplicationContext-使用/教程/原理</a></p>
+<p>bean的生命周期是怎样的（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/925"  target="_blank" rel="noopener"
+    >Spring-Bean生命周期-流程/原理</a></p>
+<p>Spring几种scope区别（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/962"  target="_blank" rel="noopener"
+    >Spring-Bean的作用域(scope)-使用/详解</a></p>
+<p>Spring容器的生命周期是怎样的？（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/963"  target="_blank" rel="noopener"
+    >Spring容器生命周期-Lifecycle</a></p>
+<p><strong>AOP</strong></p>
+<p>AOP有哪几种通知，如果方法执行报异常，哪个通知不会执行？（难度：★★★★ 频率：★）</p>
+<ul>
+<li>前置，后置，环绕，返回，异常。若报异常，返回不会执行。见：<a class="link" href="https://learn.skyofit.com/archives/966"  target="_blank" rel="noopener"
+    >这里</a></li>
+</ul>
+<p>SpringAOP的使用场景是什么？用AOP开发过什么功能（难度：★★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/971"  target="_blank" rel="noopener"
+    >Spring之AOP系列-使用场景/原理</a></p>
+<p>AOP原理？（难度：★★★★ 频率：★★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/910"  target="_blank" rel="noopener"
+    >Spring之AOP的原理(一)-概述</a></p>
+<p><strong>事务</strong></p>
+<p>Spring默认数据里隔离级别是什么？项目里用的哪个？（难度：★★★ 频率：★★）</p>
+<p>默认采用数据库的隔离级别。项目里就是用的默认的。见：<a class="link" href="https://learn.skyofit.com/archives/592"  target="_blank" rel="noopener"
+    >MySQL隔离级别-未提交读，提交读，可重复读，序列化-详解(有示例)</a></p>
+<p>Spring事务什么时候会失效？如何解决？（难度：★★★★ 频率：★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/974"  target="_blank" rel="noopener"
+    >Spring事务失效-原因/解决方案</a></p>
+<p>Spring事务传播机制？（难度：★★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/977"  target="_blank" rel="noopener"
+    >Spring事务传播机制详解</a></p>
+<p><strong>其他</strong></p>
+<p>SpringBoot如何热更新配置？（更新配置后无需重启服务）（难度：★★★ 频率：★）</p>
+<p>有四种方案。详见：<a class="link" href="https://learn.skyofit.com/archives/2377#%e5%8a%a8%e6%80%81%e6%9b%b4%e6%96%b0%e9%85%8d%e7%bd%ae%e7%9a%84%e6%96%b9%e6%b3%95"  target="_blank" rel="noopener"
+    >这里</a></p>
+<p>SpringBoot自动配置原理？（难度：★★★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/928"  target="_blank" rel="noopener"
+    >SpringBoot原理-自动配置</a></p>
+<h3 id="springmvc"><strong>SpringMVC</strong>
+</h3><p>SpringMVC流程（难度：★★★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/982"  target="_blank" rel="noopener"
+    >SpringMVC的请求流程</a></p>
+<p>servlet的过滤器、拦截器、AOP的执行顺序 （难度：★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/988"  target="_blank" rel="noopener"
+    >SpringBoot-过滤器/拦截器/AOP-用法</a></p>
+<h3 id="springboot">SpringBoot
+</h3><p>SpringBoot的启动流程？（难度：★★★★ 频率：★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/902"  target="_blank" rel="noopener"
+    >SpringBoot原理-启动流程</a></p>
+<p>SpringBoot的动态代理默认用的哪个（cglib还是JDK）？（难度：★★★★ 频率：★★★★）</p>
+<p>SpringBoot 1.5.x：默认使用JDK代理；SpringBoot 2.x：默认使用CGLIB代理。见：<a class="link" href="https://learn.skyofit.com/archives/971"  target="_blank" rel="noopener"
+    >Spring之AOP系列-使用场景/原理</a></p>
+<p>怎么自己写SpringBootStarter（难度：★★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/994"  target="_blank" rel="noopener"
+    >SpringBoot-自定义Spring Boot Starter</a></p>
+<h3 id="mybatis">MyBatis
+</h3><p>MyBatis的#与$有什么区别？（难度：★★ 频率：★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/998"  target="_blank" rel="noopener"
+    >MyBatis-#与$的区别</a></p>
+<p>MyBatis的原理？（Mapper是个接口，它的实现类在哪？）（难度：★★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/956"  target="_blank" rel="noopener"
+    >Spring-MyBatis源码对FactoryBean的应用</a></p>
+<p>为什么MyBatis与Spring整合二级缓存会失效 ？（难度：★★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/999"  target="_blank" rel="noopener"
+    >MyBatis原理-缓存机制</a></p>
+<h2 id="中间件">中间件
+</h2><h3 id="mq">MQ
+</h3><p><strong>综合</strong></p>
+<p>RabbitMQ，RocketMQ和Kafka区别（难度：★★ 频率：★★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1004"  target="_blank" rel="noopener"
+    >RabbitMQ，RocketMQ，Kafka的区别</a></p>
+<p><strong>RabbitMQ</strong></p>
+<p>RabbitMQ有哪些交换器？RabbitMQ的交换器与队列的关系？（难度：★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1005"  target="_blank" rel="noopener"
+    >RabbitMQ的交换器类型与队列模式</a></p>
+<p>RabbitMQ的消息异常（丢失、重复、顺序、堆积）如何处理？（难度：★★★ 频率：★★★★★）</p>
+<ul>
+<li><a class="link" href="https://learn.skyofit.com/archives/1018"  target="_blank" rel="noopener"
+    >RabbitMQ消息丢失的原因与解决方案</a></li>
+<li><a class="link" href="https://learn.skyofit.com/archives/1030"  target="_blank" rel="noopener"
+    >RabbitMQ消息重复的原因与解决方案</a></li>
+<li><a class="link" href="https://learn.skyofit.com/archives/1031"  target="_blank" rel="noopener"
+    >RabbitMQ保证消息顺序的方案</a></li>
+<li><a class="link" href="https://learn.skyofit.com/archives/1034"  target="_blank" rel="noopener"
+    >RabbitMQ消息堆积的解决方案</a></li>
+</ul>
+<p>RabbitMQ消息是否会过期？（难度：★★★ 频率：★★）</p>
+<ul>
+<li>默认不会过期。可以设置过期时间。</li>
+<li>详见：<a class="link" href="https://learn.skyofit.com/archives/1035"  target="_blank" rel="noopener"
+    >RabbitMQ消息的过期时间(TTL)-使用/原理</a></li>
+</ul>
+<p>RabbitMQ的消息什么时候会放到死信队列？（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1036"  target="_blank" rel="noopener"
+    >RabbitMQ死信队列-使用/原理</a></p>
+<p>RabbitMQ的延迟队列是怎样的？（难度：★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1039"  target="_blank" rel="noopener"
+    >RabbitMQ延迟队列-使用/原理</a></p>
+<p>RabbitMQ的集群有哪几种部署方式？（难度：★★ 频率：★）</p>
+<ul>
+<li>多机多节点，单机多节点</li>
+</ul>
+<p><strong>Kafka</strong></p>
+<p>为什么Kafka性能很高（难度：★★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1042"  target="_blank" rel="noopener"
+    >Kafka为什么吞吐量大、速度快？</a></p>
+<p>Kafka的消息异常（丢失、重复）如何处理？（难度：★★★ 频率：★★★★）</p>
+<ul>
+<li><a class="link" href="https://learn.skyofit.com/archives/1050"  target="_blank" rel="noopener"
+    >Kafka消息丢失-原因/解决方案/零丢失的配置</a></li>
+<li><a class="link" href="https://learn.skyofit.com/archives/1051"  target="_blank" rel="noopener"
+    >Kafka消息重复-原因/解决方案</a></li>
+</ul>
+<p>Kafka不支持延迟队列，如果用到延迟队列，该如何实现？（难度：★★★★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1052"  target="_blank" rel="noopener"
+    >Kafka延迟队列的实现方式</a></p>
+<h3 id="shiro">Shiro
+</h3><p>Shiro怎么根据url对应权限，流程是什么？（难度：★★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1123"  target="_blank" rel="noopener"
+    >Shiro整合jwt-通过url控制权限</a></p>
+<p>session存放在哪里？（难度：★★ 频率：★）</p>
+<p>一般放在Redis。见：<a class="link" href="https://learn.skyofit.com/archives/1073"  target="_blank" rel="noopener"
+    >Shiro整合shiro-redis</a></p>
+<h2 id="分布式">分布式
+</h2><h3 id="综合">综合
+</h3><p><strong>分布式</strong></p>
+<p>CAP理论是什么？Zookeeper和Eureka分别放弃了什么？（难度：★★★ 频率：★★★）</p>
+<ul>
+<li><a class="link" href="https://learn.skyofit.com/archives/1141"  target="_blank" rel="noopener"
+    >分布式-CAP定理</a></li>
+<li><a class="link" href="https://learn.skyofit.com/archives/1145"  target="_blank" rel="noopener"
+    >注册中心-Eureka、Zookeeper、Nacos、Consul的区别</a></li>
+</ul>
+<p>分布式锁实现方式（难度：★★★ 频率：★★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1147"  target="_blank" rel="noopener"
+    >分布式锁的实现方案</a></p>
+<p>2PC、3PC、TCC的区别及使用场景？（难度：★★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1169"  target="_blank" rel="noopener"
+    >分布式事务-理论</a></p>
+<p>分布式session共享解决方案（难度：★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1189"  target="_blank" rel="noopener"
+    >分布式Session的实现方案</a></p>
+<p>为什么微服务一定要有网关？（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1191"  target="_blank" rel="noopener"
+    >微服务为什么要有网关</a></p>
+<p><strong>配置中心</strong></p>
+<p>如何把微服务的公共配置给拿出来？（难度：★★ 频率：★）</p>
+<ol>
+<li>用spring.profiles.include，将公共的配置包含进去。</li>
+<li>使用Nacos，Nacos支持公共配置</li>
+</ol>
+<p><strong>Nacos</strong></p>
+<p>Nacos如何续期？（难度：★★★ 频率：★★）</p>
+<ul>
+<li>这个地方我没看，回答的Eureka的： 见：<a class="link" href="https://learn.skyofit.com/archives/1146"  target="_blank" rel="noopener"
+    >Spring Cloud Eureka原理-续期/自我保护</a></li>
+</ul>
+<p>Nacos支持AP还是CP？（难度：★★★ 频率：★★）</p>
+<ul>
+<li>两者都支持，选一种即可。（默认是AP）</li>
+</ul>
+<p><strong>Zookeeper</strong></p>
+<p>Zookeeper注册中心挂了，服务还能否调用？（难度：★★★ 频率：★★）</p>
+<ul>
+<li>可以，因为客户端还有缓存。</li>
+</ul>
+<p>ZK分布式锁，leader节点宕机了，会发生什么？（难度：★★★★ 频率：★）</p>
+<ul>
+<li>进行选举（过半选举）</li>
+</ul>
+<p><strong>RPC</strong></p>
+<p>RPC框架有哪些？SpringCloud是否是RPC框架？（难度：★★ 频率：★）</p>
+<ul>
+<li>Dubbo（阿里的）、gRPC（谷歌的），RMI（JAVA自带）、Thrift（Apache的）</li>
+<li>SpringCloud不是rpc框架，它是分布式一整套解决方案，它的feign组件是rpc框架。</li>
+</ul>
+<p>SpringCloud与Dubbo的区别？（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1193"  target="_blank" rel="noopener"
+    >Dubbo与SpringCloud区别</a></p>
+<p>HTTP与RPC方式的区别？（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1194"  target="_blank" rel="noopener"
+    >分布式-RPC</a></p>
+<h3 id="springcloud">SpringCloud
+</h3><p>主要是：服务注册、负载均衡、限流、降级、熔断。首先要看其原理。</p>
+<p><strong>服务注册（Eureka）</strong></p>
+<p>Eureka都挂了，服务还能否调用？（难度：★★★ 频率：★★）</p>
+<ul>
+<li>可以，因为客户端还有缓存。见：<a class="link" href="https://learn.skyofit.com/archives/1197"  target="_blank" rel="noopener"
+    >Eureka服务端挂了，为什么微服务还能调通？(原理分析)</a></li>
+</ul>
+<p>微服务关闭了，但请求还会进来，如何解决？（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1199"  target="_blank" rel="noopener"
+    >Spring Cloud Eureka-关闭微服务后请求还会进来</a></p>
+<p>如何续期？如何自我保护？（难度：★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1146"  target="_blank" rel="noopener"
+    >Spring Cloud Eureka原理-续期/自我保护</a></p>
+<p>熔断（Hystrix）（难度：★★★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1205"  target="_blank" rel="noopener"
+    >Spring Cloud-hystrix熔断的原理</a></p>
+<p>负载均衡（Ribbon）（难度：★★★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1206"  target="_blank" rel="noopener"
+    >Spring Cloud Ribbon-负载均衡的原理</a></p>
+<p>SpringCloud限流用哪些组件？（难度：★★★ 频率：★）</p>
+<ul>
+<li>sentinal、hystrix</li>
+</ul>
+<p><strong>配置中心</strong></p>
+<p>配置中心的配置修改后，服务不重启可以获得最新配置吗？（难度：★★ 频率：★）</p>
+<ul>
+<li>可以的。有四种方案，见：<a class="link" href="https://learn.skyofit.com/archives/2377"  target="_blank" rel="noopener"
+    >这里</a></li>
+</ul>
+<p><strong>降级</strong></p>
+<h2 id="elk"><strong>ELK</strong>
+</h2><p>正排索引与倒排索引的区别？（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1209"  target="_blank" rel="noopener"
+    >ES-正排索引与倒排索引</a></p>
+<p>ES如何与数据库（如MySQL）同步数据？（难度：★★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1212"  target="_blank" rel="noopener"
+    >ES-与MySQL同步</a></p>
+<p>ES集群的健康状态，绿色、黄色、红色分别什么含义？（难度：★★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1213"  target="_blank" rel="noopener"
+    >ES-排查集群健康状态是Red、Yellow的问题</a></p>
+<p>ES写入数据的流程（难度：★★★★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1230"  target="_blank" rel="noopener"
+    >ES-写入数据的流程(原理)</a></p>
+<p>ES查询数据的流程（难度：★★★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1234"  target="_blank" rel="noopener"
+    >ES-查询数据的流程(原理)</a></p>
+<h2 id="综合-1">综合
+</h2><p>有没有遇到过什么比较复杂的问题，如何排查的？（难度：★★★★ 频率：★★★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1235"  target="_blank" rel="noopener"
+    >Java后端接口响应慢的排查方法及解决方案</a></p>
+<p>阅读过哪些源码？（难度：★★★★ 频率：★★★★）</p>
+<ul>
+<li>Spring循环依赖的原理。见：<a class="link" href="https://learn.skyofit.com/archives/887"  target="_blank" rel="noopener"
+    >此文</a></li>
+<li>MyBatis的原理。见：<a class="link" href="https://learn.skyofit.com/archives/956"  target="_blank" rel="noopener"
+    >此文</a></li>
+<li>Hystrix的原理。见：<a class="link" href="https://learn.skyofit.com/archives/1205"  target="_blank" rel="noopener"
+    >此文</a></li>
+<li>feign负载均衡的原理。见：<a class="link" href="https://learn.skyofit.com/archives/1206"  target="_blank" rel="noopener"
+    >此文</a></li>
+</ul>
+<p>OOM如何排查？（难度：★★★ 频率：★★）</p>
+<ul>
+<li>使用jprofiler，查看OOM时的堆输出。</li>
+</ul>
+<p>Java进程消失，如何排查？（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1238"  target="_blank" rel="noopener"
+    >Java进程突然消失的原因与排查方案</a></p>
+<p>一个微服务起了多个实例，怎么让定时任务只在一个实例上执行？（难度：★★★ 频率：★）</p>
+<ul>
+<li>用定时任务中间件。常用的有：XXL-JOB、PowerJob、quartz</li>
+</ul>
+<p>如何处理SpringMVC中的异常？ （难度：★★ 频率：★★★）</p>
+<ul>
+<li>用<a class="link" href="https://learn.skyofit.com/archives/1560"  target="_blank" rel="noopener"
+    >全局异常处理</a>：@ControllerAdvice + @ExceptionHandler。</li>
+</ul>
+<p>从用户请求到数据返回的整个流程（难度：★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1246"  target="_blank" rel="noopener"
+    >用户请求到出现页面流程</a></p>
+<p>IaaS，PaaS和SaaS是什么？（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1250"  target="_blank" rel="noopener"
+    >IaaS,Paas,SaaS,DaaS-区别</a></p>
+<p>网站常见的安全漏洞有哪些？（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1253"  target="_blank" rel="noopener"
+    >网站安全漏洞-大全</a></p>
+<p>oauth2是干什么用的，流程是怎样的？（难度：★★★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1259"  target="_blank" rel="noopener"
+    >OAuth2-流程/原理</a></p>
+<p>如何不停机更新服务？（难度：★★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1200"  target="_blank" rel="noopener"
+    >SpringBoot项目-如何不停服更新应用？</a></p>
+<p>限流算法有哪些？（难度：★★★★★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1267"  target="_blank" rel="noopener"
+    >常见的限流算法的原理以及优缺点</a></p>
+<h2 id="杂项">杂项
+</h2><p><strong>HTTP</strong></p>
+<p>HTTPS的详细流程（难度：★★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1273"  target="_blank" rel="noopener"
+    >HTTPS-流程/原理</a></p>
+<p>HTTP消息结构（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1277"  target="_blank" rel="noopener"
+    >HTTP-报文结构</a></p>
+<p>HTTP状态码及其含义（难度：★★ 频率：★★）</p>
+<p>简记：正完重客服。（1xx：<strong>正</strong>在处理请求；2xx：请求处理<strong>完</strong>毕（成功）；3xx：<strong>重</strong>定向（需要附加操作）；4xx：<strong>客</strong>户端错误（导致服务器无法处理请求）， 5xx：<strong>服</strong>务器错误（服务器处理请求出错））。详见：<a class="link" href="https://www.runoob.com/http/http-status-codes.html"  target="_blank" rel="noopener"
+    >此文</a></p>
+<p>WebCocket，HTTP，Socket区别与联系？（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1281"  target="_blank" rel="noopener"
+    >Http，Socket，Websocket-区别</a></p>
+<p>HTTP1.0和HTTP2.0的区别？（难度：★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1283"  target="_blank" rel="noopener"
+    >HTTP1.1与HTTP2.0区别</a></p>
+<p><strong>Linux</strong></p>
+<p>Linux的5种IO模型（难度：★★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1284"  target="_blank" rel="noopener"
+    >Linux五种IO模型-原理/区别/详解</a></p>
+<p><strong>数据结构与算法</strong></p>
+<p>常见排序算法的复杂度及稳定性（难度：★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1291"  target="_blank" rel="noopener"
+    >排序算法-Java实例/原理</a></p>
+<p>常见查找算法的复杂度及稳定性（难度：★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1311"  target="_blank" rel="noopener"
+    >查找算法-Java实例/原理</a></p>
+<p><strong>网络</strong></p>
+<p>网络的5层协议的体系结构（难度：★ 频率：★★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1313"  target="_blank" rel="noopener"
+    >计算机网络-体系结构(五层模型/七层模型)</a></p>
+<p>TCP握手与挥手流程？为什么要三次？四次？（难度：★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1315"  target="_blank" rel="noopener"
+    >TCP-三次握手和四次挥手</a></p>
+<p>TCP如何保证可靠传输？（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1318"  target="_blank" rel="noopener"
+    >TCP协议如何保证可靠传输</a></p>
+<p>服务器怎么主动向客户端主动推送？（难度：★★ 频率：★）</p>
+<ul>
+<li>客户端去轮询（每秒查询一次）；WebSocket；TCP长连接；UDP内网穿透</li>
+</ul>
+<p>DNS劫持是怎样的？（难度：★★★ 频率：★）</p>
+<ul>
+<li>攻击DNS服务器或者客户端设备，修改域名对应的IP，导致通过域名访问到假IP，从而破坏原有服务。</li>
+</ul>
+<p>Linux无法通过curl获得服务器主页数据如何排查？（难度：★★ 频率：★）</p>
+<ul>
+<li>关防火墙、看host文件里边是否ip和域名绑定了</li>
+</ul>
+<p>两个同网段Linux服务器在不安装客户端情况下如何传递文件？（难度：★ 频率：★）</p>
+<ul>
+<li>scp命令</li>
+</ul>
+<p><strong>Linux命令</strong></p>
+<p>查看文本文件头部n行。（难度：★ 频率：★）</p>
+<ul>
+<li>head -n 200 filename //200可替换为任一数字</li>
+</ul>
+<p>查看文本文件末尾n行。（难度：★ 频率：★）</p>
+<ul>
+<li>tail -n 200 filename //200可替换为任一数字</li>
+</ul>
+<p>查看文本文件行数。（难度：★ 频率：★）</p>
+<ul>
+<li>wc -l filename</li>
+</ul>
+<p><strong>Netty</strong></p>
+<p>Netty 是如何解决 TCP的拆包/粘包问题的？（难度：★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1327"  target="_blank" rel="noopener"
+    >Netty-原理-TCP-粘包与拆包</a></p>
+<p>编程题（难度：★★★ 频率：★★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1331"  target="_blank" rel="noopener"
+    >Java笔试题编程题大全(有详细答案)</a></p>
+<p><strong>大数据</strong></p>
+<p>大数据量如何统计重复出现的次数？（难度：★★★★★ 频率：★）</p>
+<p><a class="link" href="https://learn.skyofit.com/archives/1332"  target="_blank" rel="noopener"
+    >大数据处理方案</a></p>
+<p>怎么实时统计订单？（难度：★★★★★ 频率：★）</p>
+<ul>
+<li>使用Storm框架。</li>
+</ul>
+<p>要统计10分钟内订单的亏损，你会怎么设计？（难度：★★★★★ 频率：★）</p>
+<ul>
+<li>使用Storm的窗口模式</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/java%E5%AD%A6%E4%B9%A0/">Java学习</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="//cdn.jsdelivr.net/npm/twikoo@1.6.21/dist/twikoo.all.min.js"></script>
+<div id="tcomment"></div>
+<style>
+    .twikoo {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+    :root[data-scheme="dark"] {
+        --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+        --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+    }
+    .twikoo .el-input-group__prepend,
+    .twikoo .tk-action-icon,
+    .twikoo .tk-submit-action-icon,
+    .twikoo .tk-time,
+    .twikoo .tk-comments-no,
+    .twikoo .tk-comments-count {
+        color: var(--twikoo-body-text-color);
+    }
+    .twikoo .el-input__inner,
+    .twikoo .el-textarea__inner,
+    .twikoo .tk-preview-container,
+    .twikoo .tk-content,
+    .twikoo .tk-nick,
+    .twikoo .tk-send {
+        color: var(--twikoo-body-text-color-main);
+    }
+    .twikoo .el-button{
+        color: var(--twikoo-body-text-color)!important;
+    }
+    .twikoo .el-input__count {
+        color: var(--twikoo-body-text-color) !important;
+    }
+    .OwO .OwO-body {
+        background-color: var(--body-background) !important;
+        color: var(--body-text-color) !important;
+    }
+</style><script>
+    twikoo.init({
+        envId: 'https:\/\/paseofyou-hugo-blog.hf.space',
+        el: '#tcomment',region: 'ap-shanghai',lang: 'zh-CN',})
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Example Person
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

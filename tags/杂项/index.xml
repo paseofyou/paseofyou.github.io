@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>杂项 on paseofyou的博客</title>
+        <link>https://paseofyou.github.io/tags/%E6%9D%82%E9%A1%B9/</link>
+        <description>Recent content in 杂项 on paseofyou的博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>Example Person</copyright>
+        <lastBuildDate>Tue, 11 Jun 2024 10:12:50 +0800</lastBuildDate><atom:link href="https://paseofyou.github.io/tags/%E6%9D%82%E9%A1%B9/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>应用推荐（换电脑专用）</title>
+        <link>https://paseofyou.github.io/p/%E5%BA%94%E7%94%A8%E6%8E%A8%E8%8D%90%E6%8D%A2%E7%94%B5%E8%84%91%E4%B8%93%E7%94%A8/</link>
+        <pubDate>Tue, 11 Jun 2024 10:12:50 +0800</pubDate>
+        
+        <guid>https://paseofyou.github.io/p/%E5%BA%94%E7%94%A8%E6%8E%A8%E8%8D%90%E6%8D%A2%E7%94%B5%E8%84%91%E4%B8%93%E7%94%A8/</guid>
+        <description>&lt;h2 id=&#34;编程实用软件&#34;&gt;编程实用软件
+&lt;/h2&gt;&lt;h3 id=&#34;jetbrains全家桶&#34;&gt;Jetbrains全家桶
+&lt;/h3&gt;&lt;p&gt;根据我的经验，用以下两个工具配合食用效果最佳（最稳）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.jetbrains.com/zh-cn/lp/toolbox/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;toolbox&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.exception.site/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;全家桶激活&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;非必要软件&#34;&gt;非必要软件
+&lt;/h2&gt;&lt;h3 id=&#34;hyplayer&#34;&gt;HyPlayer
+&lt;/h3&gt;&lt;p&gt;今天偶然发现一个网易云音乐神器，折腾了一下弄出来了，现在只能说部分音乐也可以免费听了。这软件需要两个项目配合使用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/HyPlayer/HyPlayer&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HyPlayer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/UnblockNeteaseMusic&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;UnblockNeteaseMusic&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这里是教程：&lt;a class=&#34;link&#34; href=&#34;https://github.com/HyPlayer/HyPlayer/wiki/%e5%85%b3%e4%ba%8e%e4%bd%bf%e7%94%a8-UnblockNeteaseMusic-%e7%9a%84%e6%96%b9%e6%b3%95&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;关于使用 UnblockNeteaseMusic 的方法&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
