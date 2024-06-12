@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>算法 on paseofyou的博客</title>
+        <link>https://paseofyou.github.io/tags/%E7%AE%97%E6%B3%95/</link>
+        <description>Recent content in 算法 on paseofyou的博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>Example Person</copyright>
+        <lastBuildDate>Mon, 01 Jan 2024 00:00:01 +0800</lastBuildDate><atom:link href="https://paseofyou.github.io/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>算法资源（仅供自学）</title>
+        <link>https://paseofyou.github.io/p/%E7%AE%97%E6%B3%95%E8%B5%84%E6%BA%90%E4%BB%85%E4%BE%9B%E8%87%AA%E5%AD%A6/</link>
+        <pubDate>Mon, 01 Jan 2024 00:00:01 +0800</pubDate>
+        
+        <guid>https://paseofyou.github.io/p/%E7%AE%97%E6%B3%95%E8%B5%84%E6%BA%90%E4%BB%85%E4%BE%9B%E8%87%AA%E5%AD%A6/</guid>
+        <description>&lt;p&gt;本文全部转载自labuladong&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Part1：打卡准备工作&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/intro/challenge-process/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day01. 走一遍打卡流程&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/essential-technique/abstraction-of-algorithm/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day02. 学习算法和刷题的框架思维&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Part2：数组链表必会技巧&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/essential-technique/linked-list-skills-summary/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day03. 链表双指针解题技巧汇总&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/essential-technique/array-two-pointers-summary/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day04. 数组双指针解题技巧汇总&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/data-structure/prefix-sum/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day05. 前缀和数组技巧&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/data-structure/diff-array/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day06. 差分数组技巧&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/practice-in-action/2d-array-traversal-summary/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day07. 二维数组花式遍历技巧&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/essential-technique/binary-search-framework/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day08. 二分搜索技巧&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/essential-technique/sliding-window-framework/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day09. 滑动窗口技巧&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Part3：通过二叉树学习递归思维&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/essential-technique/binary-tree-summary/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day10. 二叉树中的递归思维（纲领篇）&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/data-structure/binary-tree-part1/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day11. 二叉树解题（思路篇）&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/data-structure/bst-part2/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day12. 二叉搜索树解题（基操篇）&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Part4：暴力穷举算法之回溯算法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/essential-technique/backtrack-framework/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day13. 回溯算法核心原理&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/essential-technique/permutation-combination-subset-all-in-one/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day14. 回溯算法解决排列组合和子集问题&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/practice-in-action/two-views-of-backtrack/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day15. 回溯算法穷举的两种视角&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Part5：暴力穷举算法之动态规划&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/essential-technique/dynamic-programming-framework/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day16. 动态规划核心原理&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/dynamic-programming/longest-increasing-subsequence/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day17. 动态规划设计方法&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/dynamic-programming/faq-summary/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day18. 动态规划答疑篇&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/dynamic-programming/two-views-of-dp/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day19. 动态规划问题的两种穷举视角&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Part6：暴力穷举算法之BFS 算法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/essential-technique/bfs-framework/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day20. BFS 算法基础&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/practice-in-action/sliding-puzzle/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day21. BFS 算法秒杀各种益智游戏&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Part7：图论算法必会技巧&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/data-structure/graph-traverse/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day22. 图论基础及遍历算法&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/data-structure/topological-sort/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day23. 环检测及拓扑排序算法&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/data-structure/union-find/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day24. 并查集（Union-Find）算法&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/data-structure/kruskal/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day25. Kruskal 最小生成树算法&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Part8：数学算法必会技巧&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/frequency-interview/one-line-solutions/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day26. 一行代码就能解决的算法题&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/frequency-interview/print-prime-number/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day27. 如何高效寻找素数&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/frequency-interview/random-algorithm/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day28. 谈谈游戏中的随机算法&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Part9：打卡挑战总结 &amp;amp; 展望&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/essential-technique/algorithm-summary/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day29. 尝试理解计算机算法的本质&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://labuladong.online/algo/intro/visualize/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Day30. 算法可视化面板助你遨游题海&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

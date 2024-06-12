@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>日常 on paseofyou的博客</title>
+        <link>https://paseofyou.github.io/tags/%E6%97%A5%E5%B8%B8/</link>
+        <description>Recent content in 日常 on paseofyou的博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>Example Person</copyright>
+        <lastBuildDate>Wed, 12 Jun 2024 00:00:00 +0800</lastBuildDate><atom:link href="https://paseofyou.github.io/tags/%E6%97%A5%E5%B8%B8/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>日记</title>
+        <link>https://paseofyou.github.io/p/%E6%97%A5%E8%AE%B0/</link>
+        <pubDate>Wed, 12 Jun 2024 00:00:00 +0800</pubDate>
+        
+        <guid>https://paseofyou.github.io/p/%E6%97%A5%E8%AE%B0/</guid>
+        <description>&lt;h2 id=&#34;2024-06-12&#34;&gt;2024-06-12
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;把自学精灵的基础面试题快速过一遍&lt;/li&gt;
+&lt;li&gt;牛客网刷选择题300道题（做到350以上即可）&lt;/li&gt;
+&lt;li&gt;30天打卡，第一天&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以上完成后，可以去翻翻这两天看到的资料。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;牛客最新面试情况&lt;/li&gt;
+&lt;li&gt;2023字节java面试手册&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;制定06-13计划&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
