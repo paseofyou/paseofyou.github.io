@@ -13,7 +13,7 @@ date = 2024-06-04T10:12:50+08:00
 
 ## 环境准备
 
-1、下载hugo的exe：
+1、下载hugo的exe：（我使用的是0.126.3版本号）
 https://github.com/gohugoio/hugo/releases/latest
 
 官方推荐选择扩展的版本。
@@ -57,6 +57,7 @@ https://themes.gohugo.io/
 
 ```bash
 git submodule add <主题克隆地址> themes/<主题名称>
+# 比如我使用的：git submodule add https://github.com/CaiJimmy/hugo-theme-stack/ themes/hugo-theme-stack
 ```
 
 此时theme文件夹里就有了刚刚下载的主题。
